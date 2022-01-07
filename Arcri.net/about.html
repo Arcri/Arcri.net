@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcri</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="sub-header">
+
+        <nav>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT ME</a></li>
+                    <li><a href="inanotherlife.html">IN ANOTHER LIFE</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+            <h1>About Me</h1>
+    </section>
+
+
+<!------- about us content -------->
+
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>I am Arcri, a pixel artist of 3 years and a musician of 6 months.</h1>
+            <p>I started making pixel art as a hobby in late 2018, when I created my first project, a "Terraria" mod known as The Aerovelence Mod. I have made most of the sprites for this mod, and have been touching up on old sprites ever since. I have also created several other projects, several of which are texture packs for Minecraft. I am currently in the process of handling creative design for "In Another Life", a 2D platformer which the player dies and uses the world to pass obstacles as well as traverse maps. Some other projects I have ran and managed include "RunicSky", a Minecraft network.</p>
+            <a href="https://www.youtube.com/channel/UCMjDP1VBgr44aOj-Itt_wNw" class="hero-btn red-btn">THE AEROVELENCE MOD</a>
+        </div>
+        <div class="about-col">
+            <img src="images/art.png">
+        </div>
+    </div>
+</section>
+
+<!-------- footer ---------->
+
+<section class="footer">
+        <h4>About Me</h4>
+        <p>Pixel Artist, Musician, Creative Design.</p>
+        <div class="icons">
+            <a href="https://discord.gg/agyYC4a"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://twitter.com/ArcriMC"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.instagram.com/notarcri/"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-youtube"></i></a>
+
+        </div>
+        <a href="index.html"><img src="images/logo.png" height = "70px" width = "70px"></a>
+</section>
+
+
+<!----JavaScript for toggle menu---->
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+</script>
+
+</body>
+</html>
