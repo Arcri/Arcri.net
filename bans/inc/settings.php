@@ -6,13 +6,13 @@ class Settings {
         $this->lang = 'en_US.utf8';
 
         // Database information
-        $this->host = 'localhost';
+        $this->host = 's8.hosthorde.com';
         $this->port = 3306;
 
-        $this->database = 'litebans';
+        $this->database = '50564';
 
-        $this->username = '';
-        $this->password = '';
+        $this->username = '50564';
+        $this->password = 'b2f810b09e';
 
         // If you set a table prefix in config.yml, set it here as well
         $this->table_prefix = "litebans_";
