@@ -6,13 +6,13 @@ class Settings {
         $this->lang = 'en_US.utf8';
 
         // Database information
-        $this->host = 's8.hosthorde.com';
+        $this->host = 'localhost';
         $this->port = 3306;
 
-        $this->database = '50564';
+        $this->database = 'litebans';
 
-        $this->username = '50564';
-        $this->password = 'b2f810b09e';
+        $this->username = '';
+        $this->password = '';
 
         // If you set a table prefix in config.yml, set it here as well
         $this->table_prefix = "litebans_";
@@ -21,7 +21,7 @@ class Settings {
         $this->driver = 'mysql';
 
         // Server name, shown on the main page and on the header
-        $this->name = '50564';
+        $this->name = 'LiteBans';
 
         // Clicking on the header name will send you to this address.
         // $this->name_link = 'https://example.com';
