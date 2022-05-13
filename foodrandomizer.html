@@ -138,6 +138,7 @@ function getRandomDish() {
 
 
     document.getElementById("foodButton").addEventListener("click", function() {
+      e.preventDefault();
       var dish = getRandomDish();
       randomDiv.innerHTML = (dish + "<br>- "+getSuggestions(dish).join("<br>- "));
     })
