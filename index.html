@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
 <title>Arcri</title>
 <link rel="stylesheet" href="styles.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap" rel="stylesheet">
@@ -17,15 +17,15 @@
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="about.html">ABOUT ME</a></li>
-                    <li><a href="inanotherlife.html">IN ANOTHER LIFE</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="inanotherlife.html">MY GAMES</a></li>
+                    <li><a href="foodrandomizer.html">FOOD RANDOMIZER</a></li>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-        <div class="padding">
 
-          <div class="widgets">
+
+        <div class="widgets">
     	  <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w" target="_blank">
     	    <img src="images/youtube.png" class="widget">
     	  </a>
@@ -40,11 +40,12 @@
     	  </a>
 
     	  </div>
+        <div id="grad1"></div>
         <div class="text-box">
             <h1>Hey, I'm Arcri.</h1>
-            <p>Here, you're able to find all of my active projects, my commission rates, and social media updates as well as who I am.</p>
-            <a href="contact.html" class="hero-btn">Here for commission rates? Click here!</a>
+            <p>Here, you're able to find all of my active projects and social media updates as well as who I am.</p>
         </div>
+
     </section>
 
 <!---------- showcase ---------->
@@ -101,7 +102,6 @@
             <h4>About Me</h4>
             <p>Pixel Artist, Musician, Creative Design.</p>
             <div class="icons">
-                <a href="https://discord.gg/agyYC4a"><i class="fa-brands fa-discord"></i></a>
                 <a href="https://twitter.com/ArcriMC"><i class="fa fa-twitter"></i></a>
                 <a href="https://www.instagram.com/notarcri/"><i class="fa fa-instagram"></i></a>
                 <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w"><i class="fa fa-youtube"></i></a>
@@ -110,7 +110,17 @@
             <a href="index.html"><img src="images/logo.png" height = "70px" width = "70px"></a>
     </section>
 
-</script>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+    </script>
 
 </body>
 </html>

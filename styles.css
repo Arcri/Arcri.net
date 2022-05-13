@@ -1,15 +1,20 @@
+body {
+  background-color: #050505;
+}
+
 .widgets  {
-	position: absolute;
+	position: fixed;
 	display: inline-block;
 	z-index: 1;
-	left: 92%;
+	right: 10px;
+	width: auto;
   bottom: 0%;
 }
 
 .widget {
 	display: inline-block;
-	width: 30%;
-	height: 24%;
+	width: 50px;
+	height: auto;
 	margin-top: 8px;
 
 }
@@ -64,6 +69,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+		color: white;
 }
 .header{
     min-height: 50vh;
@@ -73,6 +79,16 @@
     background-size: cover;
     position: relative;
     overflow: hidden;
+}
+#grad1 {
+  height: 40%;
+  background-color: transparent; /* For browsers that do not support gradients */
+  background-image: linear-gradient(transparent, black);
+}
+#grad2 {
+  height: 260px;
+  background-color: transparent; /* For browsers that do not support gradients */
+  background-image: linear-gradient(transparent, black);
 }
 
 nav{
@@ -195,9 +211,10 @@ nav .fa{
 h1{
     font-size: 36px;
     font-weight: 600;
+		color: aliceblue;
 }
 p{
-    color: #777;
+    color: #c4c4c4;
     font-size: 14px;
     font-weight: 300;
     line-height: 22px;
@@ -211,17 +228,19 @@ p{
 
 .projects-col{
     flex-basis: 31%;
-    background: #ffdede;
+    background: #121212;
     border-radius: 10px;
     margin-bottom: 5%;
     padding: 20px 12px;
     box-sizing: border-box;
+		border: 1px solid #ccc!important;
     transition: .5s;
 }
 h3{
     text-align: center;
     font-weight: 600;
     margin: 10px 0;
+		color: aliceblue;
 }
 .projects-col:hover{
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
