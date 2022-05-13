@@ -137,7 +137,7 @@ function getRandomDish() {
     var randomDiv = document.getElementById("foodRandomDiv");
 
 
-    document.getElementById("foodButton").addEventListener("click", function() {
+    document.getElementById("foodButton").addEventListener("click", function(e) {
       e.preventDefault();
       var dish = getRandomDish();
       randomDiv.innerHTML = (dish + "<br>- "+getSuggestions(dish).join("<br>- "));
