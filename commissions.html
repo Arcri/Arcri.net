@@ -9,21 +9,20 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "https://affil.walmart.com/buttons/buynow.min.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'walmart-buynow-js'));</script>
+
 </head>
 <body>
-  <section class="header">
-
+<section class="header">
     <nav>
         <a href="index.html"><img src="images/logo.png"></a>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-close" onclick="hideMenu()"></i>
             <ul>
-              <li><a href="index.html">HOME</a></li>
-              <li><a href="about.html">ABOUT ME</a></li>
-              <li><a href="inanotherlife.html">MY GAMES</a></li>
-              <li><a href="commissions.html">COMMISSIONS</a></li>
-              <li><a href="foodrandomizer.html">FOOD RANDOMIZER</a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT ME</a></li>
+                <li><a href="inanotherlife.html">MY GAMES</a></li>
+                <li><a href="commissions.html">COMMISSIONS</a></li>
+                <li><a href="foodrandomizer.html">FOOD RANDOMIZER</a></li>
             </ul>
         </div>
         <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -31,18 +30,18 @@
 
 
     <div class="widgets">
-    <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w" target="_blank">
-      <img src="images/youtube.png" class="widget">
-    </a>
+      <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w" target="_blank">
+        <img src="images/youtube.png" class="widget">
+      </a>
 
-    <a href="https://twitter.com/ArcriMC" target="_blank">
-      <img src="images/twitter.png" class="widget">
-    </a>
+      <a href="https://twitter.com/ArcriMC" target="_blank">
+        <img src="images/twitter.png" class="widget">
+      </a>
 
-    <a href="https://discord.gg/agyYC4a" target="_blank">
+      <a href="https://discord.gg/agyYC4a" target="_blank">
 
-      <img src="images/discord.png" class="widget">
-    </a>
+        <img src="images/discord.png" class="widget">
+      </a>
     </div>
 
     <div id="grad1"></div>
@@ -50,8 +49,7 @@
         <h1>Commissions</h1>
         <a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
     </div>
-
-  </section>
+</section>
 
 <!---------- ialshowcase ---------->
 
@@ -85,17 +83,56 @@
                 <p>My hourly rate is $40 an hour for large pieces. I work quick.</p>
             </div>
         </div>
-    </section>
-</html>
+    <h2 class="san">Testemonials</h2>
+
+    <div class="row">
+        <div class="projects-col2">
+          <h3>Master Null</h3>
+          <em>"Greatest artist ever wow"</em>
+        </div>
+        <div class="projects-col2">
+          <h3>King Null</h3>
+          <em>"Could not be better"</em>
+        </div>
+        <div class="projects-col2">
+            <h3>Mr. Nuller</h3>
+            <em>"Incredible wowza 2"</em>
+        </div>
+        <div class="projects-col2">
+          <h3>The Null Christ</h3>
+          <em>"Gas art"</em>
+        </div>
+
+    </div>
+    <em>The above texts with "null" in them are not real reviews and are subject to change.</em>
+
+</section>
+
+<section class="footer">
+            <h4>About Me</h4>
+            <p>Pixel Artist, Musician, Creative Design.</p>
+            <div class="icons">
+                <a href="https://twitter.com/ArcriMC"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.instagram.com/notarcri/"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w"><i class="fa fa-youtube"></i></a>
+                <a href="https://discord.gg/agyYC4a"><i class="fa-brands fa-discord"></i></a>
+
+            </div>
+
+            <a href="index.html"><img src="images/logo.png" height = "70px" width = "70px"></a>
+</section>
+
 
 <script>
-    var navLinks = document.getElementById("navLinks");
+  var navLinks = document.getElementById("navLinks");
 
-    function showMenu() {
-        navLinks.style.right = "0";
-    }
+  function showMenu() {
+            navLinks.style.right = "0";
+  }
+  function hideMenu() {
+    navLinks.style.right = "-200px";
+  }
 
-    function hideMenu() {
-        navLinks.style.right = "-200px";
-    }
 </script>
+</body>
+</html>

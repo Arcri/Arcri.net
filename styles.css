@@ -40,10 +40,22 @@ body {
     position: relative;
     overflow: hidden;
 }
+
+.showcase-col2{
+    flex-basis: 13%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
 .showcase-col img{
     width: 100%;
 }
 .showcase-col7 img{
+    width: 100%;
+}
+
+.showcase-col2 img{
     width: 100%;
 }
 
@@ -201,7 +213,7 @@ nav .fa{
     }
     nav .fa{
         display: block;
-        color: #ffffff;
+        color: #fff;
         margin: 10px;
         font-size: 22px;
         cursor: pointer;
@@ -209,6 +221,59 @@ nav .fa{
     .text-box h1{
         font-size: 20px;
     }
+}
+
+/*----------thing--------*/
+.fade-effect1{
+    display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:black;
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#000), to(#fff));
+}
+
+.fade-effect2 {
+  display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:black;
+    background: -webkit-gradient(radial, 1% 1%, 0, 50% 50%, 350, from(#000), to(#fff));
+}
+
+.fade-effect3 {
+  display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:black;
+    background: -webkit-gradient(radial, 0% 2%, 0, 50% 50%, 553, from(#fff), to(#000));
+}
+
+.san {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+
+}
+.san:before, .san:after {
+  background-color: #ddd;
+  content: '\a0';
+  flex-grow: 1;
+  height: 1px;
+  position: relative;
+  top: 0.5em;
+
+}
+.san:before {
+  margin-right:10px;
+
+}
+.san:after {
+  margin-left:10px;
+
 }
 
 /*---------- projects --------*/
@@ -257,6 +322,17 @@ p{
     flex-basis: 45%;
     background: #121212;
     border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+		border: 1px solid #ccc!important;
+    transition: .5s;
+}
+
+.projects-col2{
+    flex-basis: 20%;
+    background: #39060f;
+    border-radius: 100px;
     margin-bottom: 5%;
     padding: 20px 12px;
     box-sizing: border-box;
