@@ -1,134 +1,196 @@
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-<title>Arcri</title>
-<link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
+<html lang="en"><head> 
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcri</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="funbox.js"></script>
 </head>
-<body>
-    <section class="header">
 
-        <nav>
-            <a href="index.html"><img src="images/logo.png"></a>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-close" onclick="hideMenu()"></i>
-                <ul>
+    <body>
 
-                </ul>
+        
+        
+        <section class="header">
+            
+            
+            
+            <div class="logo"><a href="https://www.arcri.net/"><img src="images/logo.png"></a><h1>ARCRI.NET</h1></div>
+            
+            <div class="text-box">
+                
+                <h1>About Me</h1><a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
+                <h1 id='clock'></h1>
+                
+                <script>
+                    function updateTime() {
+                    const clockElement = document.getElementById('clock');
+                    const currentTime = new Date();
+                    const options = { timeZoneName: 'short' };
+                    const timeString = currentTime.toLocaleTimeString('en-US', options);
+
+                    clockElement.textContent = timeString;
+                    }
+
+                    updateTime(); // Call the function immediately
+                    setInterval(updateTime, 1000); // Call the function every second
+                </script>
             </div>
             
-                              <li><a href="index.html">HOME</a></li>
-                  <li><a href="about.html">ABOUT ME</a></li>
-                  <li><a href="inanotherlife.html">MY GAMES</a></li>
-                  <li><a href="commissions.html">COMMISSIONS</a></li>
-                  <li><a href="foodrandomizer.html">FOOD RANDOMIZER</a></li>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
+            
+            <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
+            
+            
 
-
-        <div class="widgets">
-    	  <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w" target="_blank">
-    	    <img src="images/youtube.png" class="widget">
-    	  </a>
-
-    	  <a href="https://twitter.com/ArcriMC" target="_blank">
-    	    <img src="images/twitter.png" class="widget">
-    	  </a>
-
-    	  <a href="https://discord.gg/agyYC4a" target="_blank">
-
-    	    <img src="images/discord.png" class="widget">
-    	  </a>
-
-    	  </div>
-        <div id="grad1"></div>
-        <div class="text-box">
-            <h1>Hey, I'm Arcri.</h1>
-            <p>Here, you're able to find all of my active projects.</p>
-            <p>If you would like to contact me, message me on Discord (Arcri#2962) or email arcribusiness@gmail.com.</p>
-            <a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
-           
-
-                    <a>If you would like to join RIFT, </a> <a href=" https://discord.gg/jSrNeTCJWx" target="_blank">click here to join the Rift Discord.</a>
+            
+        </section>
+        
+        <div class="crest">
+            <div id="crest"><div id="coolgradient2"></div></div>
         </div>
 
-    </section>
+        <div class="socialicon1">
+            <div id="socialicon1"><a href="https://discord.gg/rdRtWGjfwz"><img src="images/discord.png" class="navlink"></a></div>
+        </div>
+        <div  class="socialicon2">
+            <div id="socialicon2"><a href="https://www.youtube.com/@Arcri"><img src="images/youtube.png" class="navlink"></div>
+        </div>
+        <div  class="socialicon3">
+            <div id="socialicon3"><a href="https://www.instagram.com/notarcri/"><img src="images/instagram.png" class="navlink"></div>
+        </div>
+        <div class="socialicon4">
+            <div id="socialicon4"><a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY"><img src="images/spotify.png" class="navlink"></div>
+        </div>
+        <section class="nav">
+            <a href="https://arcri.net/pixelart" class="navbutton">
+                <button class="navbutton" id="btn"><p>PIXEL ART</p><img src="images/aseprite.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/foodrandomizer" class="navbutton">
+                <button class="navbutton" id="btn"><p>FOOD</p><img src="images/food.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/riftgame" class="navbutton">
+                <button class="navbutton" id="btn"><p>RIFT</p><img src="images/rift.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/music" class="navbutton">
+                <button class="navbutton" id="btn"><p>MUSIC</p><img src="images/logo2.png" class="navlink"></button>
+            </a>
+        </section>
 
-<!---------- showcase ---------->
 
-    <section class="showcase">
-        <h1>My Projects</h1>
-        <p>Below, you can find my 3 main projects.</p>
+        <section class="panel">
             <div class="row">
-                <div class="showcase-col">
-                    <img src="images/inanotherlife.png">
-                    <a href="https://discord.gg/jSrNeTCJWx" target="_blank">
-                    <div class="layer">
-                        <h3>My Game</h3>
-                    </div>
-                    </a>
-                </div>
-                <div class="showcase-col">
-                  <a href="https://discord.gg/sWzSqJdwz5" target="_blank">
-                    <img src="images/runicsky.png">
-                    <div class="layer">
-                        <h3>My Minecraft Network</h3>
-                    </div>
-                    </a>
-                </div>
-                <div class="showcase-col">
-                  <a href="https://soundcloud.com/user-369749209" target="_blank">
-                    <img src="images/music.png">
-                    <div class="layer">
-                        <h3>My Other Hobbies</h3>
-                    </div>
-                    </a>
+                <div class="subpanel">
+                    <h1>I am Arcri, a pixel artist of
+                    
+                    <script>
+                        function calculateYearsSince(year) {
+                        const currentYear = new Date().getFullYear();
+                        const yearsSince = currentYear - year;
+                        return yearsSince;
+                        }
 
-                </div>
+                        const startingYear = 2019;
+                        const yearsSinceStart = calculateYearsSince(startingYear);
 
-            </div>
-
-            <div class="row">
-                <div class="projects-col">
-                    <h3>Rift</h3>
-                    <p>"Rift is a thrilling puzzle platformer set in an unfamiliar world. You play as an adventurer who stumbled upon a mysterious world filled with obstacles, traps, and enemies, and the only way to get through is to brave the environment. As you make your way through this strange land, you will have the power to throw things like crystals and bombs to overcome obstacles and defeat enemies. You will need to use your wits and quick reflexes to solve puzzles, navigate treacherous terrain, and avoid dangerous traps."</p>
+                        document.write((yearsSinceStart) + " years");
+                    </script>
+                    
+                    and a musician of
+                    
+                    <script>
+                        function calculateYearsSince(yearA) {
+                        const currentYearA = new Date().getFullYear();
+                        const yearsSinceA = currentYearA - yearA;
+                        return yearsSinceA;
+                        }
+    
+                        const startingYearA = 2021;
+                        const yearsSinceStartA = calculateYearsSince(startingYearA);
+    
+                        document.write((yearsSinceStartA) + " years");
+                    </script>.
+                    </h1>
+                    <p>I started making pixel art as a hobby in late 2018, when I created my first project, a "Terraria" mod known as The Aerovelence Mod. I have made most of the sprites for this mod, and have been touching up on old sprites ever since. I have also created art for several projects, several of which are for my own games. I am currently in the process of handling creative design for "Rift" and "Hooligan's Hurry", both 2D games. Some other projects I have ran and managed include "RunicSky", a Minecraft network.</p>
+                    <a href="https://www.youtube.com/channel/UCMjDP1VBgr44aOj-Itt_wNw" class="bigbutton">THE AEROVELENCE MOD</a>
                 </div>
-                <div class="projects-col">
-                    <h3>RunicSky [KILLED OFF]</h3>
-                    <p>RunicSky is a Minecraft network which started out as a KitPvP server and later grew much more creative, adding new ideas and concepts to the traditional PvP experience. RunicSky is a highly ambitious network that aims to break through the traditional servers, and bring new and unique concepts to the table!</p>
-                </div>
-                <div class="projects-col">
-                    <h3>My Art & Music</h3>
-                    <p>On top of all of my projects, I also do pixel art and music on the side. I have been doing pixel art for 3 years now, but I have just started making music as a hobby about 6 months ago.</p>
+                <div class="subpanel">
+                    <img src="images/art.png">
                 </div>
             </div>
         </section>
+        <div id="container">
+            <button id="moving-button">Glitcha</button>
+          </div>
+        <section class="footer">
+            <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
+        </section>
 
-    <section class="footer">
-            <h4>About Me</h4>
-            <p>Pixel Artist, Musician, Creative Design.</p>
-            <div class="icons">
-                <a href="https://twitter.com/ArcriMC"><i class="fa fa-twitter"></i></a>
-                <a href="https://www.instagram.com/notarcri/"><i class="fa fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCpxGzO3qYHkP9oQmZdqpS2w"><i class="fa fa-youtube"></i></a>
-
-            </div>
-            <a href="index.html"><img src="images/logo.png" height = "70px" width = "70px"></a>
-    </section>
-
-    <script>
-        var navLinks = document.getElementById("navLinks");
-
-        function showMenu() {
-            navLinks.style.right = "0";
-        }
-
-        function hideMenu() {
-            navLinks.style.right = "-200px";
-        }
-    </script>
-
-</body>
+        <script>
+            particlesJS("particles-container", {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: 3,
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "right", // Start moving particles to the right
+                    },
+                    color: {
+                        value: "#ffffff",
+                    },
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 100,
+                        },
+                    },
+                },
+                retina_detect: true,
+            });
+    
+            // Custom animation loop to move particles horizontally
+            const particlesContainer = document.getElementById("particles-container");
+            const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
+    
+            function moveParticlesHorizontally() {
+                const particles = particleCanvas.pJSDom[0].pJS.particles.array;
+                const speedFactor = 0.2; // Adjust this for the desired speed
+    
+                particles.forEach(particle => {
+                    particle.x += speedFactor;
+                    if (particle.x > window.innerWidth) {
+                        particle.x = -particle.radius;
+                    }
+                });
+    
+                requestAnimationFrame(moveParticlesHorizontally);
+            }
+    
+            moveParticlesHorizontally();
+        </script>
+    </body>
 </html>

@@ -1,0 +1,153 @@
+<html lang="en"><head> 
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcri</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="funbox.js"></script>
+</head>
+
+    <body>
+
+        
+        
+        <section class="header">
+            
+            
+            
+            <div class="logo"><a href="https://www.arcri.net/"><img src="images/logo.png"></a><h1>ARCRI.NET</h1></div>
+            
+            <div class="text-box">
+                
+                <h1>About Me</h1><a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
+                <h1 id='clock'></h1>
+                
+                <script>
+                    function updateTime() {
+                    const clockElement = document.getElementById('clock');
+                    const currentTime = new Date();
+                    const options = { timeZoneName: 'short' };
+                    const timeString = currentTime.toLocaleTimeString('en-US', options);
+
+                    clockElement.textContent = timeString;
+                    }
+
+                    updateTime(); // Call the function immediately
+                    setInterval(updateTime, 1000); // Call the function every second
+                </script>
+            </div>
+            
+            
+            <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
+            
+            
+
+            
+        </section>
+        
+        <div class="crest">
+            <div id="crest"><div id="coolgradient2"></div></div>
+        </div>
+
+        <div class="socialicon1">
+            <div id="socialicon1"><a href="https://discord.gg/rdRtWGjfwz"><img src="images/discord.png" class="navlink"></a></div>
+        </div>
+        <div  class="socialicon2">
+            <div id="socialicon2"><a href="https://www.youtube.com/@Arcri"><img src="images/youtube.png" class="navlink"></div>
+        </div>
+        <div  class="socialicon3">
+            <div id="socialicon3"><a href="https://www.instagram.com/notarcri/"><img src="images/instagram.png" class="navlink"></div>
+        </div>
+        <div class="socialicon4">
+            <div id="socialicon4"><a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY"><img src="images/spotify.png" class="navlink"></div>
+        </div>
+        <section class="nav">
+            <a href="https://arcri.net/pixelart" class="navbutton">
+                <button class="navbutton" id="btn"><p>PIXEL ART</p><img src="images/aseprite.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/foodrandomizer" class="navbutton">
+                <button class="navbutton" id="btn"><p>FOOD</p><img src="images/food.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/riftgame" class="navbutton">
+                <button class="navbutton" id="btn"><p>RIFT</p><img src="images/rift.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/music" class="navbutton">
+                <button class="navbutton" id="btn"><p>MUSIC</p><img src="images/logo2.png" class="navlink"></button>
+            </a>
+        </section>
+
+        
+        <section class="footer">
+            <h1>i will finish this soon</h1>
+            <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
+        </section>
+
+        <script>
+            particlesJS("particles-container", {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: 3,
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "right", // Start moving particles to the right
+                    },
+                    color: {
+                        value: "#ffffff",
+                    },
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 100,
+                        },
+                    },
+                },
+                retina_detect: true,
+            });
+    
+            // Custom animation loop to move particles horizontally
+            const particlesContainer = document.getElementById("particles-container");
+            const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
+    
+            function moveParticlesHorizontally() {
+                const particles = particleCanvas.pJSDom[0].pJS.particles.array;
+                const speedFactor = 0.2; // Adjust this for the desired speed
+    
+                particles.forEach(particle => {
+                    particle.x += speedFactor;
+                    if (particle.x > window.innerWidth) {
+                        particle.x = -particle.radius;
+                    }
+                });
+    
+                requestAnimationFrame(moveParticlesHorizontally);
+            }
+    
+            moveParticlesHorizontally();
+        </script>
+    </body>
+</html>
