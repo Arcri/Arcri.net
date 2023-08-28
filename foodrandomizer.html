@@ -171,71 +171,71 @@
             //randomStrings = randomStrings.map(i => "Dinner Idea: " + i);
         </script>
 
-<section class="footer">
-    <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
-</section>
+        <section class="footer">
+            <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
+        </section>
 
-<script>
-    particlesJS("particles-container", {
-        particles: {
-            number: {
-                value: 80,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            shape: {
-                type: "circle",
-            },
-            size: {
-                value: 3,
-            },
-            move: {
-                enable: true,
-                speed: 1,
-                direction: "right", // Start moving particles to the right
-            },
-            color: {
-                value: "#ffffff",
-            },
-        },
-        interactivity: {
-            detect_on: "canvas",
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: "repulse"
+        <script>
+            particlesJS("particles-container", {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: 3,
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "right", // Start moving particles to the right
+                    },
+                    color: {
+                        value: "#ffffff",
+                    },
                 },
-            },
-            modes: {
-                repulse: {
-                    distance: 100,
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 100,
+                        },
+                    },
                 },
-            },
-        },
-        retina_detect: true,
-    });
+                retina_detect: true,
+            });
 
-    // Custom animation loop to move particles horizontally
-    const particlesContainer = document.getElementById("particles-container");
-    const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
+            // Custom animatioan loop to move particles horizontally
+            const particlesContainer = document.getElementById("particles-container");
+            const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
 
-    function moveParticlesHorizontally() {
-        const particles = particleCanvas.pJSDom[0].pJS.particles.array;
-        const speedFactor = 0.2; // Adjust this for the desired speed
+            function moveParticlesHorizontally() {
+                const particles = particleCanvas.pJSDom[0].pJS.particles.array;
+                const speedFactor = 0.2; // Adjust this for the desired speed
 
-        particles.forEach(particle => {
-            particle.x += speedFactor;
-            if (particle.x > window.innerWidth) {
-                particle.x = -particle.radius;
+                particles.forEach(particle => {
+                    particle.x += speedFactor;
+                    if (particle.x > window.innerWidth) {
+                        particle.x = -particle.radius;
+                    }
+                });
+
+                requestAnimationFrame(moveParticlesHorizontally);
             }
-        });
 
-        requestAnimationFrame(moveParticlesHorizontally);
-    }
-
-    moveParticlesHorizontally();
-</script>
-</body>
+            moveParticlesHorizontally();
+        </script>
+    </body>
 </html>
