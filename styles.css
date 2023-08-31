@@ -227,6 +227,139 @@ a {
     transition: background 0.2s ease;
 }
 
+.stonebutton {
+
+    min-height: 1vh;
+
+    margin-bottom: 10px;
+    padding: 0 20px;
+
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 10px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 1s;
+    min-width: 50%;
+    max-width: 50%;
+}
+
+.stonebutton:hover * {
+    color: #ffffff;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.stonebutton:hover {
+    background: #e13156;
+    transition: background 0.2s ease;
+}
+
+.stonebuttonlockout:hover {
+    background-color: #e13156;
+    transition: background 0.2s ease;
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.pagebutton {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 1s;
+    max-width: 100%;
+}
+
+.pagebutton:hover * {
+    color: #ffffff;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.pagebutton:hover {
+    background: #e13156;
+    transition: background 0.2s ease;
+}
+
+.shopbutton {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 5px 5px 5px 5px;
+    padding: 34px 34px;
+    font-size: 13px;
+    background: #1b0a19;
+    position: relative;
+    cursor: pointer;
+    transition: 1s;
+    margin-right: 10px;
+    width: 5%;
+}
+
+.shopbutton:hover * {
+    color: #ffffff;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.shopbutton:hover {
+    background: #ff3eb5;
+    transition: background 0.2s ease;
+}
+
+.boostbutton {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 5px 5px 5px 5px;
+    padding: 34px 34px;
+    font-size: 13px;
+    background: #1b0a19;
+    position: relative;
+    cursor: pointer;
+    transition: 1s;
+    margin-right: 10px;
+    width: 5%;
+    
+}
+
+.boostbutton:hover * {
+    color: #ffffff;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.boostbutton:hover {
+    background: #ff3eb5;
+    transition: background 0.2s ease;
+}
+
 .navbutton {
     min-height: 10vh;
     max-height: 10vh;
@@ -413,4 +546,218 @@ p {
       left: calc(100% - 200px);
       opacity: 0.2;
     }
-  }
+}
+
+form {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.shop-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    z-index: 100;
+    text-align: center;
+}
+
+/* Style for the upgrade buttons */
+#upgradeStonesPerClick {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background color with some transparency */
+    z-index: 99;
+}
+
+.top-bar {
+    min-height: 3vh;
+    max-width: 100%;
+    display: flex;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    align-items: center;
+    z-index: 100;
+    margin-bottom: 10px;
+    padding: 0 20px;
+}
+
+
+.value-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.value {
+    margin: 0;
+    font-size: 18px;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.extra-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.stone-count, .stones-per-click {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stone-count span,
+.stones-per-click span {
+    margin: 0 5px;
+}
+
+.stone-count {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.separator {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+.label {
+    font-weight: bold;
+    color: #e13156; /* You can change the color */
+    margin-right: 5px; /* Adjust as needed for spacing */
+}
+
+.precious-stones {
+    margin: 0;
+    font-size: 12px;
+}
+
+.stones-container {
+    /* Your existing styles */
+}
+
+/*.stones-amount {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.stones-per-click {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}*/
+
+.auto-miner {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input[type="checkbox"] {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 15px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked + .slider {
+    background-color: #2196F3;
+}
+
+input[type="checkbox"]:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+.auto-miner-label {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.lock-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
