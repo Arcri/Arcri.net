@@ -1,0 +1,425 @@
+<html lang="en"><head> 
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcri</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="funbox.js"></script>
+</head>
+
+    <body>
+
+        
+        
+        <section class="header">
+            
+            
+            
+            <div class="logo"><a href="https://www.arcri.net/"><img src="images/logo.png"></a><h1>ARCRI.NET</h1></div>
+            
+            <div class="text-box">
+                
+                <h1>About Me</h1><a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
+                <h1 id='clock'></h1>
+                
+                <script>
+                    function updateTime() {
+                    const clockElement = document.getElementById('clock');
+                    const currentTime = new Date();
+                    const options = { timeZoneName: 'short' };
+                    const timeString = currentTime.toLocaleTimeString('en-US', options);
+
+                    clockElement.textContent = timeString;
+                    }
+
+                    updateTime(); // Call the function immediately
+                    setInterval(updateTime, 1000); // Call the function every second
+                </script>
+            </div>
+            
+            
+            <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
+            
+            
+
+            
+        </section>
+        
+        <div class="crest">
+            <div id="crest"><div id="coolgradient2"></div></div>
+        </div>
+
+        <div class="socialicon1">
+            <div id="socialicon1"><a href="https://discord.gg/rdRtWGjfwz"><img src="images/discord.png" class="navlink"></a></div>
+        </div>
+        <div  class="socialicon2">
+            <div id="socialicon2"><a href="https://www.youtube.com/@Arcri"><img src="images/youtube.png" class="navlink"></div>
+        </div>
+        <div  class="socialicon3">
+            <div id="socialicon3"><a href="https://www.instagram.com/notarcri/"><img src="images/instagram.png" class="navlink"></div>
+        </div>
+        <div class="socialicon4">
+            <div id="socialicon4"><a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY"><img src="images/spotify.png" class="navlink"></div>
+        </div>
+        <section class="nav">
+            <a href="https://arcri.net/pixelart" class="navbutton">
+                <button class="navbutton" id="btn"><p>PIXEL ART</p><img src="images/aseprite.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/foodrandomizer" class="navbutton">
+                <button class="navbutton" id="btn"><p>FOOD</p><img src="images/food.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/riftgame" class="navbutton">
+                <button class="navbutton" id="btn"><p>RIFT</p><img src="images/rift.png" class="navlink"></button>
+            </a>
+            <a href="https://arcri.net/music" class="navbutton">
+                <button class="navbutton" id="btn"><p>MUSIC</p><img src="images/logo2.png" class="navlink"></button>
+            </a>
+        </section>
+
+
+        <section>
+
+            <form id="auth-form">
+                <h2>Login or Register</h2>
+                <input type="text" id="auth-username" placeholder="Username" required>
+                <input type="password" id="auth-password" placeholder="Password" required>
+                
+                <button type="button" id="auth-register">Register</button>
+                <button type="button" id="auth-login">Login</button>
+              </form>
+
+            <div class="bigpanel">
+                <div id="modalOverlay" class="modal-overlay"></div>
+                <a id="resetButton" class="pagebutton">Reset</a>
+                <div class="top-bar">
+                    <div class="value-wrapper">
+                        <p class="label">Stones</p>
+                        <p class="value" id="stones">0</p>
+                    </div>
+                    <div class="separator">|</div>
+                    <div class="value-wrapper">
+                        <p class="label">Stones per Click</p>
+                        <p class="value" id="stonesPerClickUpgrade">1</p>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <a id="mineButton" class="stonebutton">Mine!</a>
+                    <div class="auto-miner">
+                        <label class="switch">
+                            <input type="checkbox" id="autoMinerToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class ="extra-container">
+                    <a id="shopButton" class="shopbutton">Shop!</a>
+                    <a id="activateStoneBoostButton" class="boostbutton">Boost!</a>
+                </div>
+                <div id="shopWindow" class="shop-window" style="display: none;">
+                    <h2>Rock Stop</h2>
+                    <p>Price: <span id="upgradeCost">10</span> Stones</p>
+                    <button id="upgradeStonesPerClick">Upgrade Stones Per Click</button>
+                    <!-- Add more upgrade options here -->
+                </div>
+                
+                
+            </div>
+        </section>
+        
+        <section class="footer">
+            <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
+        </section>
+
+        <script>
+            particlesJS("particles-container", {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: 3,
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "right", // Start moving particles to the right
+                    },
+                    color: {
+                        value: "#ffffff",
+                    },
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "repulse"
+                        },
+                    },
+                    modes: {
+                        repulse: {
+                            distance: 100,
+                        },
+                    },
+                },
+                retina_detect: true,
+            });
+    
+            // Custom animation loop to move particles horizontally
+            const particlesContainer = document.getElementById("particles-container");
+            const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
+    
+            function moveParticlesHorizontally() {
+                const particles = particleCanvas.pJSDom[0].pJS.particles.array;
+                const speedFactor = 0.2; // Adjust this for the desired speed
+    
+                particles.forEach(particle => {
+                    particle.x += speedFactor;
+                    if (particle.x > window.innerWidth) {
+                        particle.x = -particle.radius;
+                    }
+                });
+    
+                requestAnimationFrame(moveParticlesHorizontally);
+            }
+    
+            moveParticlesHorizontally();
+        </script>
+        <script>
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+
+            if (!localStorage.getItem("initialized")) {
+                localStorage.setItem("stones", "0");
+                localStorage.setItem("stonesPerClick", "1");
+                localStorage.setItem("upgradeCost", "10");
+                localStorage.setItem("initialized", "true");
+            }
+
+            // Initialize the game state
+            let stones = parseInt(localStorage.getItem("stones"));
+            let stonesPerClick = parseInt(localStorage.getItem("stonesPerClick"));
+            let shopUpgradeCost = parseInt(localStorage.getItem("upgradeCost"));
+            let autoMiningInterval;
+            let stoneBoostActive = false;
+
+            const stonesElement = document.getElementById("stones");
+            const mineButton = document.getElementById("mineButton");
+            const activateStoneBoostButton = document.getElementById("activateStoneBoostButton")
+            const upgradeCostElement = document.getElementById("upgradeCost");
+            const shopButton = document.getElementById("shopButton");
+            const shopWindow = document.getElementById("shopWindow");
+            const modalOverlay = document.getElementById("modalOverlay");
+            const stonesPerClickUpgrade = document.getElementById("stonesPerClickUpgrade");
+            const upgradeStonesPerClickButton = document.getElementById("upgradeStonesPerClick");
+            const autoMinerToggle = document.getElementById("autoMinerToggle");
+
+            // Update the stones per click upgrade display
+            function updateStonesPerClickUpgrade() {
+                stonesPerClickUpgrade.textContent = stonesPerClick;
+            }
+
+            // Update the UI with current game state
+            function updateUI() {
+                stonesElement.textContent = stones;
+                upgradeCostElement.textContent = shopUpgradeCost;
+                updateStonesPerClickUpgrade(); // Update the upgrade display
+
+            }
+
+            function activateStoneBoost() {
+                if(stoneBoostActive) return;
+                
+                stoneBoostActive = true;
+                console.log("stone boost active");
+                stonesPerClick *= 2;
+                updateUI();
+
+                mineButton.classList.add("shake");
+
+                setTimeout(() => {
+                    stoneBoostActive = false;
+                    stonesPerClick /= 2;
+                    updateUI();
+                    mineButton.classList.remove("shake");
+                }, 5000);
+            }
+
+            activateStoneBoostButton.addEventListener("click", activateStoneBoost);
+
+            // Mine stones with a rate limit
+            function mineStonesManually() {
+            const timeSinceLastMine = Date.now() - parseInt(localStorage.getItem("lastMineTime") || "0");
+            if (timeSinceLastMine >= 200) {
+                stones += stonesPerClick;
+                localStorage.setItem("stones", stones);
+                localStorage.setItem("lastMineTime", Date.now());
+                updateUI();
+            }
+        }
+
+        // Function to mine stones automatically
+        function mineStonesAuto() {
+            stones += stonesPerClick;
+            localStorage.setItem("stones", stones);
+            updateUI();
+        }
+
+        function enableRedHover() {
+            mineButton.classList.add("")
+        }
+
+        mineButton.addEventListener("click", () => {
+            if (!autoMinerToggle.checked) {
+                mineStonesManually();
+            }
+        });
+
+        autoMinerToggle.addEventListener("change", () => {
+            if (autoMinerToggle.checked) {
+                autoMiningInterval = setInterval(mineStonesAuto, 1000);
+                mineButton.disabled = true; // Disable manual mining
+            } else {
+                clearInterval(autoMiningInterval);
+                mineButton.disabled = false; // Enable manual mining
+            }
+        });
+
+            // Event listener for the reset button
+            resetButton.addEventListener("click", () => {
+                stones = 0;
+                stonesPerClick = 1;
+                shopUpgradeCost = 10;
+                localStorage.setItem("stones", stones);
+                localStorage.setItem("stonesPerClick", stonesPerClick);
+                localStorage.setItem("upgradeCost", shopUpgradeCost);
+                updateUI();
+            });
+
+            // Show the shop window when the shop button is clicked
+            shopButton.addEventListener("click", () => {
+                shopWindow.style.display = "block";
+                modalOverlay.style.display = "block"; // Show the overlay
+            });
+
+            // Hide the shop window and overlay when the user presses Escape key
+            window.addEventListener("keydown", event => {
+                if (event.key === "Escape") {
+                    shopWindow.style.display = "none";
+                    modalOverlay.style.display = "none"; // Hide the overlay
+                }
+            });
+
+            // Close the shop window and overlay when clicking outside of the shop window
+            modalOverlay.addEventListener("click", () => {
+                shopWindow.style.display = "none";
+                modalOverlay.style.display = "none";
+            });
+
+            const upgradePriceElement = document.getElementById("upgradePrice");
+
+            // Update the upgrade price display
+            function updateUpgradePrice() {
+                upgradePriceElement.textContent = shopUpgradeCost;
+            }
+
+            // Handle upgrading stones per click
+            upgradeStonesPerClickButton.addEventListener("click", () => {
+                if (stones >= shopUpgradeCost) {
+                    stones -= shopUpgradeCost;
+                    stonesPerClick += 1;
+                    shopUpgradeCost *= 2;
+                    localStorage.setItem("stones", stones);
+                    localStorage.setItem("stonesPerClick", stonesPerClick);
+                    localStorage.setItem("upgradeCost", shopUpgradeCost);
+
+                    updateUI();
+                }
+            });
+            updateUI();
+
+            });
+        </script>
+
+<script>
+    const apiUrl = 'https://arcrimining.us-3.evennode.com';
+
+    const authForm = document.getElementById('auth-form');
+    const authUsername = document.getElementById('auth-username');
+    const authPassword = document.getElementById('auth-password');
+    const authRegister = document.getElementById('auth-register');
+    const authLogin = document.getElementById('auth-login');
+
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+        }
+        return "";
+    }
+
+    authRegister.addEventListener('click', async () => {
+      const username = authUsername.value;
+      const password = authPassword.value;
+      try {
+        const response = await fetch(`${apiUrl}/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        alert(data.message);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+
+    authLogin.addEventListener('click', async () => {
+      const username = authUsername.value;
+      const password = authPassword.value;
+      try {
+        document.cookie = "loginKey=" + json.key;
+        const response = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (response.status === 200) {
+          const token = data.token;
+          alert('Login successful');
+        } else {
+          alert('Login failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+  </script>
+    </body>
+</html>
