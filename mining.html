@@ -103,12 +103,12 @@
                     </div>
                     <div class="separator">|</div>
                     <div class="value-wrapper">
-                        <p class="label">Stones per Click</p>
-                        <p class="value" id="stonesPerClick">1</p>
+                        <p class="label">Rare Rocks</p>
+                        <p class="value" id="stonesPerClick">0</p>
                     </div>
                     <div class="separator">|</div>
                     <div class="value-wrapper">
-                        <p class="label">Extra %</p>
+                        <p class="label">Refined Rare Rocks</p>
                         <p class="value" id="multiplier">0</p>
                     </div>
                 </div>
@@ -128,10 +128,10 @@
                 <div id="shopWindow" class="shop-window" style="display: none;">
                     <h2>Rock Stop</h2>
                     <p>Price: <span id="upgradeCost">10</span> Stones</p>
-                    <button id="purchaseStonesPerClickUpgrade">Upgrade Stones Per Click</button>
+                    <button id="purchaseStonesPerClickUpgrade">Buy Rare Rock</button>
 
                     <p>Price: <span id="upgradeCostMult">20</span> Stones</p>
-                    <button id="purchaseMultiplierUpgrade">Upgrade Multiplier</button>
+                    <button id="purchaseMultiplierUpgrade">Buy Refined Rare Rock</button>
                     <!-- Add more upgrade options here -->
                 </div>
                 
@@ -291,7 +291,7 @@
 
                     // Update UI with new values
                     currentStonesElement.textContent = data.Stones;
-                    stonesPerClickElement.textContent = data.stonesPerClick;
+                    stonesPerClickElement.textContent = data.stonesPerClick - 1;
                     upgradeCostElement.textContent = data.upgradeCost;
                     upgradeCostMultElement.textContent = data.upgradeCostMult;
                     multiplierElement.textContent = data.multiplier;
@@ -434,7 +434,7 @@
                 const data = await response.json();
 
                 currentStonesElement.textContent = data.Stones;
-                stonesPerClickElement.textContent = data.stonesPerClick;
+                stonesPerClickElement.textContent = data.stonesPerClick - 1;
                 multiplierElement.textContent = data.multiplier;
                 upgradeCostElement.textContent = data.upgradeCost;
                 upgradeCostMultElement.textContent = data.upgradeCostMult;
