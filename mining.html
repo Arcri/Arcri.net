@@ -214,6 +214,9 @@
             const upgradeCostMultElement = document.getElementById('upgradeCostMult');
             const mineButton = document.getElementById('mineButton');
 
+            let autoMiningInterval;
+            const autoMinerToggle = document.getElementById("autoMinerToggle");
+
             mineButton.addEventListener('click', async () => {
                 try {
                     const loggedInUsername = loggedInUsernameElement.value; // Make sure loggedInUsernameElement is defined
@@ -316,6 +319,22 @@
                 shopWindow.style.display = "none";
                 modalOverlay.style.display = "none";
             });
+
+            mineButton.addEventListener("click", () => {
+                if (!autoMinerToggle.checked) {
+                    mineStonesManually();
+                }
+            });
+
+            autoMinerToggle.addEventListener("change", () => {
+                if (autoMinerToggle.checked) {
+                    autoMiningInterval = setInterval(mineStonesAuto, 1000);
+                    mineButton.disabled = true; // Disable manual mining
+                } else {
+                    clearInterval(autoMiningInterval);
+                    mineButton.disabled = false; // Enable manual mining
+                }
+            });
         </script>
 
 
@@ -389,7 +408,7 @@
             }
         });
 
-        const updateInterval = 0; // 5 seconds
+        const updateInterval = -1; // hopefully instant
 
         setInterval(async () => {
             await updateUI();
@@ -397,12 +416,12 @@
 
         async function updateUI() {
             try {
-                const loggedInUsername = loggedInUsernameElement.value; // Ensure loggedInUsernameElement is defined
+                const loggedInUsername = loggedInUsernameElement.value;
                 if (!loggedInUsername) {
                     return; // If the user isn't logged in, we don't fetch the data
                 }
 
-                const response = await fetch(`${apiUrl}/getCurrentData`, { // Replace with your actual endpoint
+                const response = await fetch(`${apiUrl}/getCurrentData`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -414,18 +433,44 @@
 
                 const data = await response.json();
 
-                // Assuming your server returns all the data you want to display:
                 currentStonesElement.textContent = data.Stones;
                 stonesPerClickElement.textContent = data.stonesPerClick;
                 multiplierElement.textContent = data.multiplier;
                 upgradeCostElement.textContent = data.upgradeCost;
-                upgradeCostMultElement.textContent = data.upgradeCostMult; // Corrected 'textContext' to 'textContent'
+                upgradeCostMultElement.textContent = data.upgradeCostMult;
 
             } catch (error) {
                 console.error('Error updating UI:', error);
             }
         }
 
+        async function mineStonesAuto() {
+            try {
+                const loggedInUsername = loggedInUsernameElement.value; // Ensure loggedInUsernameElement is defined
+                if (!loggedInUsername) {
+                    alert('Please log in first.');
+                    return;
+                }
+
+                // Make a POST request to /mineStone endpoint to mine stones
+                const response = await fetch(`${apiUrl}/mineStone`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: loggedInUsername,
+                    }),
+                });
+
+                const data = await response.json();
+                if (data.Stones) {
+                    currentStonesElement.textContent = data.Stones; // Updating the displayed stone count
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
         
         </script>
     </body>
