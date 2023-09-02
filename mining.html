@@ -487,7 +487,7 @@
                             errorMessageElement.textContent = 'Login failed';
                         }
 
-                        if (username.length < 5) {
+                        if (username.length < 5 || username.length > 32) {
                             errorMessageElement.textContent = "Username must be at least 5 characters long!";
                             return;
                             }
