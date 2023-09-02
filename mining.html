@@ -452,55 +452,66 @@
 
             const errorMessageElement = document.getElementById('error-message');
 
-            authRegister.addEventListener('click', async () => {
+authRegister.addEventListener('click', async () => {
+    const username = authUsername.value;
+    const password = authPassword.value;
+    
+    errorMessageElement.textContent = "";
 
-                const username = authUsername.value;
-                const password = authPassword.value;
-                
+    // Client-side validation
+    if (username.length < 5 || username.length > 20) {
+        errorMessageElement.textContent = "Username must be at least 5 characters long!";
+        return;
+    }
+    
+    if (/\s/.test(username)) {  // Check for spaces
+        errorMessageElement.textContent = "Username should not contain spaces!";
+        return;
+    }
 
-                errorMessageElement.textContent = "";
-                    try {
-                        const response = await fetch(`${apiUrl}/register`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ username, password })
-                        });
-                        //const data = await response.json();
-                        if (response.status === 200) {
-                            const token = data.token;
-                            // Set the username in the hidden input field
-                            loggedInUsernameElement.value = username;
-                            errorMessageElement.textContent ='Login successful';     
-                        } else if (response.status === 409) {
-                        errorMessageElement.textContent = 'Username is already taken!';
-                        } else if (response.status === 201) {
-                            errorMessageElement.textContent = 'User created successfully!';
-                        } else if (response.status === 500) {
-                            errorMessageElement.textContent = 'Failed to create user. Please try again.';
-                        } else if (response.status === 400) {
-                            errorMessageElement.textContent = 'Not enough in the pass';
-                        }
-                        
-                        else {
-                            errorMessageElement.textContent = 'Login failed';
-                        }
+    const forbiddenWords = ['nigger', 'n1gg3r', 'n1gg4r', 'waffle', 'n1gg4', 'n1gga', 'nigga', 'boobs', 'porn', 'asshole', 'nigg', 'n3gg3r', 'n1gg3r', 'shit', 'cunt', 'bitch', 'b1tch', 'penis', 'p1nis', 'pen1s', 'p3n1s', 'p3nis', 'nigger']; // Replace placeholders with the actual words
+    const hasForbiddenWord = forbiddenWords.some(word => new RegExp(word, 'i').test(username));
+    if (hasForbiddenWord) {
+        errorMessageElement.textContent = "Please choose a different username.";
+        return;
+    }
 
-                        if (username.length < 5 || username.length > 32) {
-                            errorMessageElement.textContent = "Username must be at least 5 characters long!";
-                            return;
-                            }
+    if (password.length < 6) {
+        errorMessageElement.textContent = 'Password must be at least 6 characters long!';
+        return;
+    }
 
-                            if (password.length < 6) {
-                                errorMessageElement.textContent = 'Password must be at least 6 characters long!';
-                                return;
-                            }
-                            //alert(data.message);
-                        } catch (error) {
-                            console.error('Error:', error);
-                        }
-                });
+    try {
+        const response = await fetch(`${apiUrl}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();  // If the server sends a JSON response
+
+        if (response.status === 200) {
+            const token = data.token;
+            // Set the username in the hidden input field
+            loggedInUsernameElement.value = username;
+            errorMessageElement.textContent ='Login successful';     
+        } else if (response.status === 409) {
+            errorMessageElement.textContent = 'Username is already taken!';
+        } else if (response.status === 201) {
+            errorMessageElement.textContent = 'User created successfully!';
+        } else if (response.status === 500) {
+            errorMessageElement.textContent = 'Failed to create user. Please try again.';
+        } else if (response.status === 400) {
+            errorMessageElement.textContent = 'Not enough in the pass';
+        } else {
+            errorMessageElement.textContent = 'Login failed';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
 
             authLogin.addEventListener('click', async () => {
                 const username = authUsername.value;
