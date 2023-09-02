@@ -490,7 +490,7 @@ authRegister.addEventListener('click', async () => {
             body: JSON.stringify({ username, password })
         });
 
-        const data = await response.json();  // If the server sends a JSON response
+        //const data = await response.json();  // If the server sends a JSON response
 
         if (response.status === 200) {
             const token = data.token;
