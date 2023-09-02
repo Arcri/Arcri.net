@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="funbox.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </head>
 
     <body>
@@ -89,51 +91,64 @@
                 <input type="text" id="auth-username" placeholder="Username" required>
                 <input type="password" id="auth-password" placeholder="Password" required>
                 
+                <div id="error-message" style="color: red;"></div>
+
                 <button type="button" id="auth-register">Register</button>
                 <button type="button" id="auth-login">Login</button>
               </form>
 
-            <div class="bigpanel">
-                <div id="modalOverlay" class="modal-overlay"></div>
-                <a id="resetButton" class="pagebutton">Reset</a>
-                <div class="top-bar">
-                    <div class="value-wrapper">
-                        <p class="label">Stones</p>
-                        <p class="value" id="currentStones">0</p>
+            <div id="someDiv" class="hidden">
+                <div class="leaderboard-container">
+                    <h2>Top Miners</h2>
+                    <ol id="leaderboard-list"></ol>
+                 </div>
+                <div class="bigpanel">
+                    <div id="modalOverlay" class="modal-overlay"></div>
+                    <a id="resetButton" class="pagebutton">Reset</a>
+                    <div class="top-bar">
+                        <div class="value-wrapper">
+                            <p class="label">Stones</p>
+                            <p class="value" id="currentStones">0</p>
+                        </div>
+                        <div class="separator">|</div>
+                        <div class="value-wrapper">
+                            <p class="label">Rare Rocks</p>
+                            <p class="value" id="stonesPerClick">0</p>
+                        </div>
+                        <div class="separator">|</div>
+                        <div class="value-wrapper">
+                            <p class="label">Refined Rare Rocks</p>
+                            <p class="value" id="multiplier">0</p>
+                        </div>
                     </div>
-                    <div class="separator">|</div>
-                    <div class="value-wrapper">
-                        <p class="label">Rare Rocks</p>
-                        <p class="value" id="stonesPerClick">0</p>
+                    
+                    <div class="button-container">
+                        <a id="mineButton" class="stonebutton">Mine!</a>
+                        <div class="auto-miner">
+                            <label class="switch">
+                                <input type="checkbox" id="autoMinerToggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="separator">|</div>
-                    <div class="value-wrapper">
-                        <p class="label">Refined Rare Rocks</p>
-                        <p class="value" id="multiplier">0</p>
+                    <div class ="extra-container">
+                        <a id="shopButton" class="shopbutton">Shop!</a>
+                        <a id="activateStoneBoostButton" class="boostbutton">Boost!</a>
                     </div>
-                </div>
-                <div class="button-container">
-                    <a id="mineButton" class="stonebutton">Mine!</a>
-                    <div class="auto-miner">
-                        <label class="switch">
-                            <input type="checkbox" id="autoMinerToggle">
-                            <span class="slider"></span>
-                        </label>
+                    
+                    <div id="shopWindow" class="shop-window" style="display: none;">
+                        <h2>Rock Stop</h2>
+                        <p>Price: <span id="upgradeCost">10</span> Stones</p>
+                        <button id="purchaseStonesPerClickUpgrade">Buy Rare Rock</button>
+    
+                        <p>Price: <span id="upgradeCostMult">20</span> Stones</p>
+                        <button id="purchaseMultiplierUpgrade">Buy Refined Rare Rock</button>
+                        <!-- Add more upgrade options here -->
                     </div>
-                </div>
-                <div class ="extra-container">
-                    <a id="shopButton" class="shopbutton">Shop!</a>
-                    <a id="activateStoneBoostButton" class="boostbutton">Boost!</a>
-                </div>
-                <div id="shopWindow" class="shop-window" style="display: none;">
-                    <h2>Rock Stop</h2>
-                    <p>Price: <span id="upgradeCost">10</span> Stones</p>
-                    <button id="purchaseStonesPerClickUpgrade">Buy Rare Rock</button>
+            </div>
+            
 
-                    <p>Price: <span id="upgradeCostMult">20</span> Stones</p>
-                    <button id="purchaseMultiplierUpgrade">Buy Refined Rare Rock</button>
-                    <!-- Add more upgrade options here -->
-                </div>
+
                 
                 
             </div>
@@ -213,7 +228,57 @@
             const upgradeCostElement = document.getElementById('upgradeCost');
             const upgradeCostMultElement = document.getElementById('upgradeCostMult');
             const mineButton = document.getElementById('mineButton');
+            
+            const storedToken = localStorage.getItem('jwtToken');
 
+            if (storedToken) {
+                const socket = io(apiUrl, {
+                    query: {
+                        token: storedToken
+                    }
+                });
+
+                socket.on('updateData', (data) => {
+                    currentStonesElement.textContent = Math.ceil(data.Stones);
+                    stonesPerClickElement.textContent = data.stonesPerClick - 1;
+                    multiplierElement.textContent = data.multiplier;
+                    // Update other required data...
+                });
+
+                socket.on('updateLeaderboard', (data) => {
+                const leaderboardList = document.getElementById('leaderboard-list');
+
+                socket.on('onlineStatusUpdate', (onlineUsers) => {
+                    console.log('Currently online users:', onlineUsers); // Log online users
+
+                    const leaderboardItems = document.querySelectorAll('#leaderboard-list li');
+
+                    leaderboardItems.forEach(item => {
+                        const username = item.textContent.split(':')[0].trim();
+                        if (onlineUsers[username]) {
+                            item.classList.add('online');
+                        } else {
+                            item.classList.remove('online');
+                        }
+                    });
+                });
+
+                // Fetch and display leaderboard on page load
+                fetchAndDisplayLeaderboard();
+                
+                // Clear the previous leaderboard data
+                leaderboardList.innerHTML = '';
+
+                data.forEach(user => {
+                    const listItem = document.createElement('li');
+                    let stones = user.currentStones.toFixed(0);  // This will round to the nearest whole number
+                    listItem.textContent = `${user.username}: ${stones} stones`;
+                    leaderboardList.appendChild(listItem);
+                });
+            });
+            } else {
+                console.error("JWT token not found. Please login first.");
+            }
             let autoMiningInterval;
             const autoMinerToggle = document.getElementById("autoMinerToggle");
 
@@ -224,6 +289,8 @@
                         alert('Please log in first.');
                         return;
                     }
+
+                    updateUI();
 
                     // Make a POST request to /mineStone endpoint to mine stones
                     const response = await fetch(`${apiUrl}/mineStone`, {
@@ -236,19 +303,17 @@
                         }),
                     });
 
+                    fetch(`${apiUrl}/leaderboard`)
+
                     const data = await response.json();
-                    if (data.Stones) {
-                        currentStonesElement.textContent = data.Stones; // Updating the displayed stone count
-                    }
-                    if (upgradeType === 'stonesPerClick' && data.stonesPerClick !== undefined) {
-                        stonesPerClickElement.textContent = data.stonesPerClick;
-                    } else if (upgradeType === 'multiplier' && data.multiplier !== undefined) {
-                        multiplierElement.textContent = data.multiplier;
-                    }
+                    //fetchAndDisplayLeaderboard();
+
 
                 } catch (error) {
                     console.error('Error:', error);
                 }
+
+                
             });
 
             const purchaseStonesPerClickUpgradeButton = document.getElementById('purchaseStonesPerClickUpgrade');
@@ -264,21 +329,30 @@
 
             async function purchaseUpgrade(upgradeType) {
                 try {
-                    const loggedInUsername = loggedInUsernameElement.value; // Make sure you've defined loggedInUsernameElement
+                    // Store the current value right before making the request
+                    const previousValue = currentStonesElement.textContent;
+                    const previousValue1 = stonesPerClickElement.textContent;
+                    const previousValue2 = upgradeCostElement.textContent;
+                    const previousValue3 = upgradeCostMultElement.textContent;
+                    const previousValue4 = multiplierElement.textContent;
+                    
+                    const loggedInUsername = loggedInUsernameElement.value; 
                     if (!loggedInUsername) {
                         alert('Please log in first.');
                         return;
                     }
 
-                    // Make a POST request to /purchaseUpgrade endpoint to buy an upgrade
+                    // Display the previous value while waiting for server response
+                    currentStonesElement.textContent = previousValue;
+
                     const response = await fetch(`${apiUrl}/purchaseUpgrade`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            username: loggedInUsername, // Use the logged-in username
-                            upgradeType: upgradeType   // Specify the upgrade type ('stonesPerClick' or 'multiplier')
+                            username: loggedInUsername,
+                            upgradeType: upgradeType
                         }),
                     });
 
@@ -290,11 +364,12 @@
                     }
 
                     // Update UI with new values
-                    currentStonesElement.textContent = data.Stones;
-                    stonesPerClickElement.textContent = data.stonesPerClick - 1;
-                    upgradeCostElement.textContent = data.upgradeCost;
-                    upgradeCostMultElement.textContent = data.upgradeCostMult;
-                    multiplierElement.textContent = data.multiplier;
+                    // Only update if data.Stones is a number, otherwise keep displaying previousValue
+                    currentStonesElement.textContent = isNaN(data.Stones) ? previousValue : formatStones(data.Stones);
+                    stonesPerClickElement.textContent = isNaN(data.stonesPerClick) ? previousValue1 : Math.ceil(data.stonesPerClick) - 1; 
+                    upgradeCostElement.textContent = isNaN(data.upgradeCost) ? previousValue2 : Math.ceil(data.upgradeCost); 
+                    upgradeCostMultElement.textContent = isNaN(data.upgradeCostMult) ? previousValue3 : Math.ceil(data.upgradeCostMult); 
+                    multiplierElement.textContent = isNaN(data.multiplier) ? previousValue4 : Math.ceil(data.multiplier); 
 
                 } catch (error) {
                     console.error('Error purchasing upgrade:', error);
@@ -320,11 +395,11 @@
                 modalOverlay.style.display = "none";
             });
 
-            mineButton.addEventListener("click", () => {
+            /*mineButton.addEventListener("click", () => {
                 if (!autoMinerToggle.checked) {
                     mineStonesManually();
                 }
-            });
+            });*/
 
             autoMinerToggle.addEventListener("change", () => {
                 if (autoMinerToggle.checked) {
@@ -337,6 +412,9 @@
             });
         </script>
 
+<script>
+  </script>
+
 
         <script>
             const apiUrl = 'https://arcrimining.us-3.evennode.com';
@@ -348,6 +426,8 @@
             const authPassword = document.getElementById('auth-password');
             const authRegister = document.getElementById('auth-register');
             const authLogin = document.getElementById('auth-login');
+
+            let previousValue = currentStonesElement.textContent;
 
 
             function getCookie(cname) {
@@ -364,55 +444,119 @@
                 }
                 return "";
             }
+            
+
+            const errorMessageElement = document.getElementById('error-message');
 
             authRegister.addEventListener('click', async () => {
-            const username = authUsername.value;
-            const password = authPassword.value;
-            try {
-                const response = await fetch(`${apiUrl}/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
+
+                const username = authUsername.value;
+                const password = authPassword.value;
+                
+
+                errorMessageElement.textContent = "";
+                    try {
+                        const response = await fetch(`${apiUrl}/register`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ username, password })
+                        });
+                        //const data = await response.json();
+                        if (response.status === 200) {
+                            const token = data.token;
+                            // Set the username in the hidden input field
+                            loggedInUsernameElement.value = username;
+                            errorMessageElement.textContent ='Login successful';     
+                        } else if (response.status === 409) {
+                        errorMessageElement.textContent = 'Username is already taken!';
+                        } else if (response.status === 201) {
+                            errorMessageElement.textContent = 'User created successfully!';
+                        } else if (response.status === 500) {
+                            errorMessageElement.textContent = 'Failed to create user. Please try again.';
+                        } else if (response.status === 400) {
+                            errorMessageElement.textContent = 'Not enough in the pass';
+                        }
+                        
+                        else {
+                            errorMessageElement.textContent = 'Login failed';
+                        }
+
+                        if (username.length < 5) {
+                            errorMessageElement.textContent = "Username must be at least 5 characters long!";
+                            return;
+                            }
+
+                            if (password.length < 6) {
+                                errorMessageElement.textContent = 'Password must be at least 6 characters long!';
+                                return;
+                            }
+                            //alert(data.message);
+                        } catch (error) {
+                            console.error('Error:', error);
+                        }
                 });
-                const data = await response.json();
-                alert(data.message);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-            });
 
             authLogin.addEventListener('click', async () => {
-            const username = authUsername.value;
-            const password = authPassword.value;
-            try {
-                const response = await fetch(`${apiUrl}/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
-                const data = await response.json();
-                if (response.status === 200) {
-                    const token = data.token;
-                    // Set the username in the hidden input field
-                    loggedInUsernameElement.value = username;
-                    alert('Login successful');
-                } else {
-                    alert('Login failed');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
+                const username = authUsername.value;
+                const password = authPassword.value;
+                const someDiv = document.getElementById('someDiv');
 
-        const updateInterval = -1; // hopefully instant
+                const response44 = await fetch(`${apiUrl}/login`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+                try {
+                    const response = await fetch(`${apiUrl}/login`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+                    const data = await response.json();
+                    if (response.status === 200) {
+                        // Use setTimeout to remove the form after 1 second
+                    setTimeout(() => {
+                        authForm.style.display = 'none';
+                        someDiv.classList.remove('hidden');
+                    }, 1500); // 1000 milliseconds = 1 second
+                    
+                        const token = data.token;
+                        console.log(token);
+                        // Set the username in the hidden input field
+                        loggedInUsernameElement.value = username;
+                        errorMessageElement.textContent ='Login successful';
+                    } 
+                    
+
+
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+
+                if (response44.status === 404) {
+                        
+                        // Set the username in the hidden input field
+                        errorMessageElement.textContent ='User not found!';
+                    } 
+            });
+
+        const updateInterval = 2000; // hopefully instant
 
         setInterval(async () => {
             await updateUI();
         }, updateInterval);
+
+        
+        setInterval(async () => {
+            fetchAndDisplayLeaderboard();
+        }, updateInterval);
+
 
         async function updateUI() {
             try {
@@ -433,11 +577,11 @@
 
                 const data = await response.json();
 
-                currentStonesElement.textContent = data.Stones;
-                stonesPerClickElement.textContent = data.stonesPerClick - 1;
-                multiplierElement.textContent = data.multiplier;
-                upgradeCostElement.textContent = data.upgradeCost;
-                upgradeCostMultElement.textContent = data.upgradeCostMult;
+                currentStonesElement.textContent = isNaN(data.Stones) ? previousValue : formatStones(data.Stones);
+                stonesPerClickElement.textContent = isNaN(data.stonesPerClick) ? "Loading..." : data.stonesPerClick - 1; 
+                upgradeCostElement.textContent = isNaN(data.upgradeCost) ? "Loading..." :  Math.ceil(data.upgradeCost); 
+                upgradeCostMultElement.textContent = isNaN(data.upgradeCostMult) ? "Loading..." : Math.ceil(data.upgradeCostMult); 
+                multiplierElement.textContent = isNaN(data.multiplier) ? "Loading..." : data.multiplier; 
 
             } catch (error) {
                 console.error('Error updating UI:', error);
@@ -446,13 +590,12 @@
 
         async function mineStonesAuto() {
             try {
-                const loggedInUsername = loggedInUsernameElement.value; // Ensure loggedInUsernameElement is defined
+                const loggedInUsername = loggedInUsernameElement.value;
                 if (!loggedInUsername) {
                     alert('Please log in first.');
                     return;
                 }
 
-                // Make a POST request to /mineStone endpoint to mine stones
                 const response = await fetch(`${apiUrl}/mineStone`, {
                     method: 'POST',
                     headers: {
@@ -465,10 +608,58 @@
 
                 const data = await response.json();
                 if (data.Stones) {
-                    currentStonesElement.textContent = data.Stones; // Updating the displayed stone count
+                    currentStonesElement.textContent = isNaN(data.Stones) ? "Loading..." : formatStones(data.Stones); // Ensure you're rounding here
                 }
             } catch (error) {
                 console.error('Error:', error);
+            }
+        }
+
+
+        const onlineUsers = {}; // Define the object to track online users
+
+        function fetchAndDisplayLeaderboard() {
+        fetch(`${apiUrl}/leaderboard`)
+            .then(response => response.json())
+            .then(data => {
+                const leaderboardList = document.getElementById('leaderboard-list');
+                leaderboardList.innerHTML = ''; // Clear the list before updating
+
+                const loggedInUsername = loggedInUsernameElement.value;
+
+                data.forEach(user => {
+                    const listItem = document.createElement('li');
+                    let stones = formatStones(user.currentStones); // Format stones as needed
+                    listItem.textContent = `${user.username}: ${stones} stones`;
+
+                    // Check if the username matches the currently logged-in user
+                    if (loggedInUsername && user.username === loggedInUsername) {
+                        listItem.classList.add('active'); // Apply the "active" class
+                    }
+
+                    leaderboardList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching leaderboard:', error);
+            });
+    }
+
+        fetchAndDisplayLeaderboard();
+
+        function formatStones(stones) {
+            if (stones >= 1e15) {
+                return (stones / 1e15).toFixed(2) + "Q";
+            } else if (stones >= 1e12) {
+                return (stones / 1e12).toFixed(2) + "T";
+            } else if (stones >= 1e9) {
+                return (stones / 1e9).toFixed(2) + "B";
+            } else if (stones >= 1e6) {
+                return (stones / 1e6).toFixed(2) + "M";
+            } else if (stones >= 1e3) {
+                return (stones / 1e3).toFixed(2) + "K";
+            } else {
+                return stones.toFixed(0);
             }
         }
         
