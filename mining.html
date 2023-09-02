@@ -373,7 +373,7 @@
                     stonesPerClickElement.textContent = isNaN(data.stonesPerClick) ? previousValue1 : Math.ceil(data.stonesPerClick) - 1; 
                     upgradeCostElement.textContent = isNaN(data.upgradeCost) ? previousValue2 : Math.ceil(data.upgradeCost); 
                     upgradeCostMultElement.textContent = isNaN(data.upgradeCostMult) ? previousValue3 : Math.ceil(data.upgradeCostMult); 
-                    multiplierElement.textContent = isNaN(data.multiplier) ? previousValue4 : formatMultiplier(multiplier); 
+                    multiplierElement.textContent = isNaN(data.multiplier) ? previousValue4 : (Math.floor(data.multiplier * 100) / 100);
 
                 } catch (error) {
                     console.error('Error purchasing upgrade:', error);
@@ -585,7 +585,7 @@
                 stonesPerClickElement.textContent = isNaN(data.stonesPerClick) ? "Loading..." : data.stonesPerClick - 1; 
                 upgradeCostElement.textContent = isNaN(data.upgradeCost) ? "Loading..." :  Math.ceil(data.upgradeCost); 
                 upgradeCostMultElement.textContent = isNaN(data.upgradeCostMult) ? "Loading..." : Math.ceil(data.upgradeCostMult); 
-                multiplierElement.textContent = isNaN(data.multiplier) ? "Loading..." : formatMultiplier(multiplier); 
+                multiplierElement.textContent = isNaN(data.multiplier) ? "Loading..." : (Math.floor(data.multiplier * 100) / 100)
 
             } catch (error) {
                 console.error('Error updating UI:', error);
@@ -665,15 +665,6 @@
             } else {
                 return stones.toFixed(0);
             }
-        }
-
-        function formatMultiplier(multiplier) {
-            // Check if the multiplier is a whole number
-            if (multiplier % 1 === 0) {
-                return String(multiplier);  // or simply: return multiplier;
-            }
-            
-            return multiplier.toFixed(2);  // Display up to 2 decimal places
         }
                 
         </script>
