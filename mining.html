@@ -94,7 +94,7 @@
                 <input type="text" id="auth-username" placeholder="Username" required>
                 <input type="password" id="auth-password" placeholder="Password" required>
                 
-                <div id="error-message" style="color: red;"></div>
+                <div id="error-message" style="color: white;"></div>
 
                 <button type="button" id="auth-register">Register</button>
                 <button type="button" id="auth-login">Login</button>
@@ -130,7 +130,7 @@
                         <div class="auto-miner">
                             <label class="switch">
                                 <input type="checkbox" id="autoMinerToggle">
-                                <span class="slider"></span>
+                                Auto Auto<span class="slider"></span>
                             </label>
                         </div>
                     </div>
@@ -551,7 +551,7 @@
                     } 
             });
 
-        const updateInterval = 2000; // hopefully instant
+        const updateInterval = 750; // hopefully instant
 
         setInterval(async () => {
             await updateUI();
