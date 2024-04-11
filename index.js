@@ -10,9 +10,14 @@ const port = 8081;
 console.log("moneyballs")
 app.use(bodyParser.json());
 
+app.options('*', cors()); // include before other routes
+
 app.use(cors({
     origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add any other methods needed
+    allowedHeaders: ['Content-Type', 'Authorization'] // Add other headers as needed
 }));
+
 
 // Registration endpoint
 app.post('/register', async (req, res) => {

@@ -106,6 +106,7 @@
                     <ol id="leaderboard-list"></ol>
                  </div>
                 <div class="bigpanel">
+                    <div class="unselectable">
                     <div id="modalOverlay" class="modal-overlay"></div>
                     <div class="top-bar">
                         <div class="value-wrapper">
@@ -124,7 +125,7 @@
                         </div>
                     </div>
                     
-                    <div class="button-container">
+                    <div class="button-container", class="unelectable">
                         <a id="mineButton" class="stonebutton">Mine!</a>
                         <div class="auto-miner">
                             <label class="switch">
@@ -149,6 +150,7 @@
                         <button id="purchaseMultiplierUpgrade">Buy Refined Rare Rock</button>
                         <!-- Add more upgrade options here -->
                     </div>
+                </div>
             </div>
             
 
@@ -452,7 +454,7 @@
 
             const errorMessageElement = document.getElementById('error-message');
 
-authRegister.addEventListener('click', async () => {
+    authRegister.addEventListener('click', async () => {
     const username = authUsername.value;
     const password = authPassword.value;
     
