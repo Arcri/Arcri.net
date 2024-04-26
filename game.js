@@ -1096,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLeaderboardDisplay(selectedSortType);
     }, 1000);
 
-    const socket = io('http://localhost:3000', {
+    const socket = io('https://Arcri.net/mining', {
         transports: ['websocket'],
         upgrade: false,
     });
