@@ -1,166 +1,400 @@
-<html lang="en"><head> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <link rel="icon" href="images/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcri</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
+    <title>Stone Collector Game</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="funbox.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+    
 </head>
+<body>
 
-    <body>
-
-        <input type="hidden" id="loggedInUsername" value="">
+    <section class="header">
+        <div class="logo"><a href="https://www.arcri.net/"><img src="images/logo.png"></a><h1>ARCRI.NET</h1></div>
         
-        <section class="header">
+        <div class="text-box">
             
+            <h1>About Me</h1><a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
+            <h1 id='clock'></h1>
             
-            
-            <div class="logo"><a href="https://www.arcri.net/"><img src="images/logo.png"></a><h1>ARCRI.NET</h1></div>
-            
-            <div class="text-box">
-                
-                <h1>About Me</h1><a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee.</a>
-                <h1 id='clock'></h1>
-                
-                <script>
-                    function updateTime() {
-                    const clockElement = document.getElementById('clock');
-                    const currentTime = new Date();
-                    const options = { timeZoneName: 'short' };
-                    const timeString = currentTime.toLocaleTimeString('en-US', options);
+            <script>
+                function updateTime() {
+                const clockElement = document.getElementById('clock');
+                const currentTime = new Date();
+                const options = { timeZoneName: 'short' };
+                const timeString = currentTime.toLocaleTimeString('en-US', options);
 
-                    clockElement.textContent = timeString;
-                    }
+                clockElement.textContent = timeString;
+                }
 
-                    updateTime(); // Call the function immediately
-                    setInterval(updateTime, 1000); // Call the function every second
-                </script>
-            </div>
-            
-            
-            <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
-            
-            
-
-            
-        </section>
-        
-        <div class="crest">
-            <div id="crest"><div id="coolgradient2"></div></div>
+                updateTime(); // Call the function immediately
+                setInterval(updateTime, 1000); // Call the function every second
+            </script>
         </div>
+        <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
+    </section>
 
-        <div class="socialicon1">
-            <div id="socialicon1"><a href="https://discord.gg/rdRtWGjfwz"><img src="images/discord.png" class="navlink"></a></div>
+    <div class="crest">
+        <div id="crest"><div id="coolgradient2"></div></div>
+    </div>
+
+    <div class="socialicon1">
+        <div id="socialicon1"><a href="https://discord.gg/rdRtWGjfwz"><img src="images/discord.png" class="navlink"></a></div>
+    </div>
+    <div  class="socialicon2">
+        <div id="socialicon2"><a href="https://www.youtube.com/@Arcri"><img src="images/youtube.png" class="navlink"></div>
+    </div>
+    <div  class="socialicon3">
+        <div id="socialicon3"><a href="https://www.instagram.com/notarcri/"><img src="images/instagram.png" class="navlink"></div>
+    </div>
+    <div class="socialicon4">
+        <div id="socialicon4"><a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY"><img src="images/spotify.png" class="navlink"></div>
+    </div>
+    <section class="nav">
+        <a href="https://arcri.net/pixelart" class="navbutton">
+            <button class="navbutton" id="btn"><p>PIXEL ART</p><img src="images/aseprite.png" class="navlink"></button>
+        </a>
+        <a href="https://arcri.net/foodrandomizer" class="navbutton">
+            <button class="navbutton" id="btn"><p>FOOD</p><img src="images/food.png" class="navlink"></button>
+        </a>
+        <a href="https://arcri.net/riftgame" class="navbutton">
+            <button class="navbutton" id="btn"><p>RIFT</p><img src="images/rift.png" class="navlink"></button>
+        </a>
+        <a href="https://arcri.net/music" class="navbutton">
+            <button class="navbutton" id="btn"><p>MUSIC</p><img src="images/logo2.png" class="navlink"></button>
+        </a>
+        <a href="https://arcri.net/mining" class="navbutton">
+            <button class="navbutton" id="btn"><p>MINING</p><img src="images/pickaxe.png" class="navlink"></button>
+        </a>
+    </section>
+
+    <div id="auth-container">
+        <div id="auth">
+            <h2>Authentication</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="loginBtn">Login</button>
+            <button id="registerBtn">Create Account</button>
         </div>
-        <div  class="socialicon2">
-            <div id="socialicon2"><a href="https://www.youtube.com/@Arcri"><img src="images/youtube.png" class="navlink"></div>
-        </div>
-        <div  class="socialicon3">
-            <div id="socialicon3"><a href="https://www.instagram.com/notarcri/"><img src="images/instagram.png" class="navlink"></div>
-        </div>
-        <div class="socialicon4">
-            <div id="socialicon4"><a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY"><img src="images/spotify.png" class="navlink"></div>
-        </div>
-        <section class="nav">
-            <a href="https://arcri.net/pixelart" class="navbutton">
-                <button class="navbutton" id="btn"><p>PIXEL ART</p><img src="images/aseprite.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/foodrandomizer" class="navbutton">
-                <button class="navbutton" id="btn"><p>FOOD</p><img src="images/food.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/riftgame" class="navbutton">
-                <button class="navbutton" id="btn"><p>RIFT</p><img src="images/rift.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/music" class="navbutton">
-                <button class="navbutton" id="btn"><p>MUSIC</p><img src="images/logo2.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/mining" class="navbutton">
-                <button class="navbutton" id="btn"><p>MINING</p><img src="images/pickaxe.png" class="navlink"></button>
-            </a>
-        </section>
+    </div>
 
-
-        <section>
-
-            <form id="auth-form">
-                <h2>Login or Register</h2>
-                <input type="text" id="auth-username" placeholder="Username" required>
-                <input type="password" id="auth-password" placeholder="Password" required>
-                
-                <div id="error-message" style="color: white;"></div>
-
-                <button type="button" id="auth-register">Register</button>
-                <button type="button" id="auth-login">Login</button>
-              </form>
-
-            <div id="someDiv" class="hidden">
-                <div class="leaderboard-container">
-                    <h2>Top Miners</h2>
-                    <ol id="leaderboard-list"></ol>
-                 </div>
+    <div id="game" style="display:none;">
+        <div class="container">
+            <!-- Game Panel on the left -->
+            <div class="game-panel">
+                <div id="profile" style="display:none;">
+                    <!-- Profile information will be injected here -->
+                </div>
+    
                 <div class="bigpanel">
                     <div class="unselectable">
-                    <div id="modalOverlay" class="modal-overlay"></div>
-                    <div class="top-bar">
-                        <div class="value-wrapper">
-                            <p class="label">Stones</p>
-                            <p class="value" id="currentStones">0</p>
+                        <div id="modalOverlay" class="modal-overlay"></div>
+
+                        <div id="rockTumblerIcon" style="position: fixed; bottom: 50px; left: 50px; cursor: pointer;">
+                            <img src="images/rock_tumbler.png" alt="Rock Tumbler">
+                            <!-- Only one beltedTimeDisplay is needed, likely the one outside of the modal -->
+                            <div id="beltedTimeDisplay" class="belted-timer">
+                                <div class="flaps">
+                                    <!-- Timer content will be dynamically inserted here -->
+                                </div>
+                            </div>
                         </div>
-                        <div class="separator">|</div>
-                        <div class="value-wrapper">
-                            <p class="label">Rare Rocks</p>
-                            <p class="value" id="stonesPerClick">0</p>
+
+
+                        
+                        <!-- Rock Tumbler Modal -->
+                        <div id="rockTumblerModal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h2>Rock Tumbler</h2>
+                                <p>Input stones (min 5,000,000): <input type="number" id="stoneInput"></p>
+                                <p>Input coins: <input type="number" id="coinInput" oninput="updateSuccessRate()"></p>
+                                <p>Success Rate: <span id="successRate">0%</span></p>
+                                <button onclick="startTumbling()">Start Tumbling</button>
+                                <div id="beltedTimeDisplay" class="belted-timer">
+                                    <div class="flaps"></div> <!-- This will hold the flipping numbers -->
+                                </div>
+                            </div>
                         </div>
-                        <div class="separator">|</div>
-                        <div class="value-wrapper">
-                            <p class="label">Refined Rare Rocks</p>
-                            <p class="value" id="multiplier">0</p>
+
+                        <div class="top-bar">
+                            <div class="value-wrapper">
+                                <p class="label">Stones</p>
+                                <p class="value" id="currentStones">0</p>
+                            </div>
+                            <div class="separator">|</div>
+                            <div class="value-wrapper">
+                                <p class="label">Coins</p>
+                                <p class="value" id="currentCoins">0</p>
+                            </div>
+                            <div class="separator">|</div>
+                            <div class="value-wrapper">
+                                <p class="label">Stones Per Click</p>
+                                <p class="value" id="stonesPerClick">0</p>
+                            </div>
+
+                            <div class="separator">|</div>
+                            <div class="value-wrapper">
+                                <p class="label">Auto-Miner Stones</p>
+                                <p class="value" id="autoMineCount">0</p>
+                            </div>
+                            <a id="profileButton" class="shopbutton">Profile</a>
                         </div>
-                    </div>
-                    
-                    <div class="button-container", class="unelectable">
-                        <a id="mineButton" class="stonebutton">Mine!</a>
-                        <div class="auto-miner">
-                            <label class="switch">
-                                <input type="checkbox" id="autoMinerToggle">
-                                Auto Auto<span class="slider"></span>
-                            </label>
+                        <div class="button-container" class="unselectable">
+                            <a id="mineButton" class="stonebutton">Mine!</a>
+                            <div class="auto-miner">
+                                <label class="switch">
+                                    <input type="checkbox" id="autoMinerToggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <span class="auto-miner-label">Auto</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class ="extra-container">
-                        <a id="shopButton" class="shopbutton">Shop!</a>
-                        <a id="activateStoneBoostButton" class="boostbutton">(Soon)</a>
-                    </div>
-                    
-                    <div id="shopWindow" class="shop-window" style="display: none;">
-                        <h2>Rock Stop</h2>
-                        <p>Price: <span id="upgradeCost">500</span> Stones</p>
-                        <p>Get 1 extra stone per click</p>
-                        <button id="purchaseStonesPerClickUpgrade">Buy Rare Rock</button>
-    
-                        <p>Price: <span id="upgradeCostMult">3000</span> Stones</p>
-                        <p>Get 10% extra stones per click</p>
-                        <button id="purchaseMultiplierUpgrade">Buy Refined Rare Rock</button>
-                        <!-- Add more upgrade options here -->
+                        <div class="extra-container">
+                            <a id="shopButton" class="shopbutton">Shop!</a>
+                            <a id="sellButton" class="shopbutton">Sell!</a>
+                           <!-- <a id="cosmeticsButton" class="shopbutton">Cosmetics!</a>-->
+                        </div>
+
+                        <div id="cosmeticsShop" class="modal">
+                            <div class="close">&times;</div>
+                            <div class="shop-tabs">
+                                <button class="tab-button" onclick="openCosmeticTab('Hats')">Hats</button>
+                                <button class="tab-button" onclick="openCosmeticTab('Accessories')">Accessories</button>
+                                <button class="tab-button" onclick="openCosmeticTab('Pickaxes')">Pickaxes</button>
+                            </div>
+                            <!-- Tab Contents -->
+                            <div id="Hats" class="tab-content">
+                                <!-- Dynamic list of hats will be loaded here -->
+                            </div>
+                            <div id="Accessories" class="tab-content">
+                                <!-- Dynamic list of accessories will be loaded here -->
+                            </div>
+                            <div id="Pickaxes" class="tab-content">
+                                <!-- Dynamic list of pickaxes will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Cosmetics Selection Modal -->
+                        <div id="cosmeticsSelection" class="modal">
+                            <div class="close">&times;</div>
+                            <div id="selectedCosmetics">
+                                <!-- Show the selected cosmetics here -->
+                                <div id="selectedHat">
+                                    <!-- Selected hat image -->
+                                </div>
+                                <div id="selectedAccessory">
+                                    <!-- Selected accessory image -->
+                                </div>
+                                <!-- ...same for pickaxes -->
+                            </div>
+                            <!-- Controls for selecting cosmetics -->
+                            <div class="cosmetic-controls">
+                                <div class="cosmetic-arrow left" onclick="previousCosmetic('hat')">&lt;</div>
+                                <div class="cosmetic-arrow right" onclick="nextCosmetic('hat')">&gt;</div>
+                                <!-- ...same for accessories and pickaxes -->
+                            </div>
+                            <button id="saveCosmetics" class="shopbutton">Save</button>
+                        </div>
+
+                        <div id="shopWindow" class="shop-window" style="display: none;">
+                            <h2>Rock Stop</h2>
+                            <div class="shop-banner">
+                                <img src="images/banner.png" alt="Rock Stop Banner" class="shop-banner-image">
+                                <img src="images/chest.png" alt="Treasure Chest" class="shop-chest-image">
+                            </div>
+                            <div class="shop-tabs">
+                                <button class="tab-button" onclick="openTab('MiningGear')">Mining Gear</button>
+                                <button class="tab-button" onclick="openTab('Automation')">Automation</button>
+                                <button class="tab-button" onclick="openTab('Collectables')">Collectables</button>
+                            </div>
+                            <!-- Mining Gear Tab -->
+                            <div id="MiningGear" class="tab-content">
+                                <div class="shop-item" data-upgrade-type="fortuneUpgrade">
+                                    <img src="images/sturdypickaxe.png" alt="Sturdy Pickaxe">
+                                    <span class="shop-item-details">
+                                        <h3>Sturdy Pickaxe</h3>
+                                        <p>Increases stone yield by 1 per click.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Owned: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="fortuneUpgrade">Buy</button>
+                                </div>
+
+                                <div class="shop-item" data-upgrade-type="luckyPouchUpgrade">
+                                    <img src="images/luckypouch.png" alt="Lucky Pouch">
+                                    <span class="shop-item-details">
+                                        <h3>Lucky Pouch</h3>
+                                        <p>Gives you a small chance of finding gold when you mine for stone.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Current percentage: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="luckyPouchUpgrade">Buy</button>
+                                </div>
+                                <!-- More items here -->
+                            </div>
+                            <!-- Automation Tab -->
+                            <div id="Automation" class="tab-content">
+                                
+
+                                <div class="shop-item" data-upgrade-type="ordinaryDrillUpgrade">
+                                    <img src="images/ordinarydrill.png" alt="Ordinary Drill">
+                                    <span class="shop-item-details">
+                                        <h3>Ordinary Drill</h3>
+                                        <p>Increases auto-miner stone yield by 1.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Owned: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="ordinaryDrillUpgrade">Buy</button>
+                                </div>
+
+                                <div class="shop-item" data-upgrade-type="pearlyDrillUpgrade">
+                                    <img src="images/pearlydrill.png" alt="Pearly Drill">
+                                    <span class="shop-item-details">
+                                        <h3>Pearly Drill</h3>
+                                        <p>Gives you a chance to mine Pearly Stone.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Current percentage: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="pearlyDrillUpgrade">Buy</button>
+                                </div>
+
+                                <div class="shop-item" data-upgrade-type="unstableDrillUpgrade">
+                                    <img src="images/unstabledrill.png" alt="Unstable Drill">
+                                    <span class="shop-item-details">
+                                        <h3>Unstable Drill</h3>
+                                        <p>Mines stone in speedy bursts.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Current percentage: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="unstableDrillUpgrade">Buy</button>
+                                </div>
+
+                                <div class="shop-item" data-upgrade-type="draglineExcavatorUpgrade">
+                                    <img src="images/draglineexcavator.png" alt="Pearly Drill">
+                                    <span class="shop-item-details">
+                                        <h3>Dragline Excavator</h3>
+                                        <p>Increases your auto stone mined by 0.1%.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Current percentage: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="draglineExcavatorUpgrade">Buy</button>
+                                </div>
+
+
+                                <div class="shop-item" data-upgrade-type="bucketWheelExcavatorUpgrade">
+                                    <img src="images/bucketwheelexcavator.png" alt="Pearly Drill">
+                                    <span class="shop-item-details">
+                                        <h3>31 Million Pound Bucket Wheel Excavator</h3>
+                                        <p>Mines a huge quantity of stones.</p>
+                                        <p class="upgrade-cost">Cost: Loading...</p>
+                                        <p class="upgrade-count">Current percentage: Loading...</p>
+                                    </span>
+                                    <button class="purchase-button" data-upgrade-type="bucketWheelExcavatorUpgrade">Buy</button>
+                                </div>
+
+                            </div>
+                            <!-- Collectables Tab -->
+                            <div id="Collectables" class="tab-content">
+                                <!-- List of collectables will go here -->
+                            </div>
+                            <!-- More tabs can be added similarly -->
+                        </div>
+
+                        <div id="sellWindow" class="shop-window" style="display: none;">
+                            <h2>Stone Market</h2>
+                            <div class="shop-tabs">
+                                <button class="tab-button" onclick="openTab('RoughStones')">Rough Stones</button>
+                                <button class="tab-button" onclick="openTab('LustrousStones')">Lustrous Stones</button>
+                                <button class="tab-button" onclick="openTab('MegaStones')">Mega Stones</button>
+                            </div>
+                            <div id="RoughStones" class="tab-content">
+                                <div class="shop-item">
+                                    <img src="images/rough_stone.png" alt="Rough Stone">
+                                    <span class="shop-item-details">
+                                        <h3>Rough Stone</h3>
+                                        <p>Count: <span id="roughStoneCount">Loading...</span></p>
+                                        <p>Profit: <span id="roughStoneProfit">Loading...</span></p>
+                                        <p>Market Rate: <span id="roughStoneRate">Loading...</span></p>
+                                        <input type="number" id="sellRoughStoneAmount" placeholder="Enter quantity" oninput="calculateAndUpdateProfit('roughStone')"/>
+=
+=
+                                        <button class="sellbutton" onclick="sellStones('rough', document.getElementById('sellRoughStoneAmount').value)">Sell</button>
+                                    </span>
+                                </div>
+
+                                <div class="shop-item">
+                                    <img src="images/pearly_stone.png" alt="Pearly Stone">
+                                    <span class="shop-item-details">
+                                        <h3>Pearly Stone</h3>
+                                        <p>Count: <span id="pearlyStoneCount">Loading...</span></p>
+                                        <p>Profit: <span id="pearlyStoneProfit">Loading...</span></p>
+                                        <p>Market Rate: <span id="pearlyStoneRate">Loading...</span></p>
+                                        <input type="number" id="sellPearlyStoneAmount" placeholder="Enter quantity" oninput="calculateAndUpdateProfit('pearlyStone')"/>
+=
+                                        <button class="sellbutton" onclick="sellStones('pearly', document.getElementById('sellPearlyStoneAmount').value)">Sell</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="LustrousStones" class="tab-content">
+                                <!-- Selling items for Lustrous Stones will be dynamically inserted here -->
+                            </div>
+                            <div id="MegaStones" class="tab-content">
+                                <!-- Selling items for Mega Stones will be dynamically inserted here -->
+                            </div>
+                            <div style="text-align: right; padding: 20px;">
+                                <button id="quickSellAll" class="purchase-button">Quick Sell All</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            
-
-
-                
-                
+    
+            <!-- Side Panel on the right for Chat and Leaderboard -->
+            <div class="side-panel">
+                <div class="chat-box">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Chat messages will be dynamically inserted here -->
+                    </div>
+                    <div class="chat-form">
+                        <input type="text" id="chatInput" placeholder="Type a message..." />
+                        <button id="sendChat">Send</button>
+                    </div>
+                </div>
+                <div class="leaderboard">
+                    <h3>Leaderboard</h3>
+                    <select id="leaderboardSort">
+                        <option value="stoneCount">Stones</option>
+                        <option value="coins">Coins</option>
+                        <!-- Add more sorting options if needed -->
+                    </select>
+                    <div id="leaderboardList">
+                        <!-- Leaderboard entries will be dynamically inserted here -->
+                    </div>
+                </div>
             </div>
-        </section>
-        
-        <section class="footer">
+        </div>
+    </div>
+    
+
+    <div id="notificationContainer" class="notification-container hidden">
+        <div class="notification-message">
+            <h4 id="notificationHeader">Hey!</h4>
+            <p id="notificationText">This is a notification message.</p>
+        </div>
+    </div>
+
+    <script src="UpgradeManager.js"></script>
+    <script src="auth.js"></script>
+    <script src="game.js"></script>
+    
+
+
+            <section class="footer">
             <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
         </section>
 
@@ -226,460 +460,5 @@
     
             moveParticlesHorizontally();
         </script>
-
-        <script>
-            const currentStonesElement = document.getElementById('currentStones');
-            const stonesPerClickElement = document.getElementById('stonesPerClick');
-            const multiplierElement = document.getElementById('multiplier');
-            const upgradeCostElement = document.getElementById('upgradeCost');
-            const upgradeCostMultElement = document.getElementById('upgradeCostMult');
-            const mineButton = document.getElementById('mineButton');
-            
-            const storedToken = localStorage.getItem('jwtToken');
-
-            if (storedToken) {
-                const socket = io(apiUrl, {
-                    query: {
-                        token: storedToken
-                    }
-                });
-
-                socket.on('updateData', (data) => {
-                    currentStonesElement.textContent = Math.ceil(data.Stones);
-                    stonesPerClickElement.textContent = data.stonesPerClick - 1;
-                    multiplierElement.textContent = formatMultiplier(multiplier);
-                    // Update other required data...
-                });
-
-                socket.on('updateLeaderboard', (data) => {
-                const leaderboardList = document.getElementById('leaderboard-list');
-
-                socket.on('onlineStatusUpdate', (onlineUsers) => {
-                    console.log('Currently online users:', onlineUsers); // Log online users
-
-                    const leaderboardItems = document.querySelectorAll('#leaderboard-list li');
-
-                    leaderboardItems.forEach(item => {
-                        const username = item.textContent.split(':')[0].trim();
-                        if (onlineUsers[username]) {
-                            item.classList.add('online');
-                        } else {
-                            item.classList.remove('online');
-                        }
-                    });
-                });
-
-                // Fetch and display leaderboard on page load
-                fetchAndDisplayLeaderboard();
-                
-                // Clear the previous leaderboard data
-                leaderboardList.innerHTML = '';
-
-                data.forEach(user => {
-                    const listItem = document.createElement('li');
-                    let stones = user.currentStones.toFixed(0);  // This will round to the nearest whole number
-                    listItem.textContent = `${user.username}: ${stones} stones`;
-                    leaderboardList.appendChild(listItem);
-                });
-            });
-            } else {
-                console.error("JWT token not found. Please login first.");
-            }
-            let autoMiningInterval;
-            const autoMinerToggle = document.getElementById("autoMinerToggle");
-
-            mineButton.addEventListener('click', async () => {
-                try {
-                    const loggedInUsername = loggedInUsernameElement.value; // Make sure loggedInUsernameElement is defined
-                    if (!loggedInUsername) {
-                        alert('Please log in first.');
-                        return;
-                    }
-
-                    updateUI();
-
-                    // Make a POST request to /mineStone endpoint to mine stones
-                    const response = await fetch(`${apiUrl}/mineStone`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            username: loggedInUsername,
-                        }),
-                    });
-
-                    fetch(`${apiUrl}/leaderboard`)
-
-                    const data = await response.json();
-                    //fetchAndDisplayLeaderboard();
-
-
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-
-                
-            });
-
-            const purchaseStonesPerClickUpgradeButton = document.getElementById('purchaseStonesPerClickUpgrade');
-            const purchaseMultiplierUpgradeButton = document.getElementById('purchaseMultiplierUpgrade');
-
-            purchaseStonesPerClickUpgradeButton.addEventListener('click', async () => {
-                await purchaseUpgrade('stonesPerClick');
-            });
-
-            purchaseMultiplierUpgradeButton.addEventListener('click', async () => {
-                await purchaseUpgrade('multiplier');
-            });
-
-            async function purchaseUpgrade(upgradeType) {
-                try {
-                    // Store the current value right before making the request
-                    const previousValue = currentStonesElement.textContent;
-                    const previousValue1 = stonesPerClickElement.textContent;
-                    const previousValue2 = upgradeCostElement.textContent;
-                    const previousValue3 = upgradeCostMultElement.textContent;
-                    const previousValue4 = multiplierElement.textContent;
-                    
-                    const loggedInUsername = loggedInUsernameElement.value; 
-                    if (!loggedInUsername) {
-                        alert('Please log in first.');
-                        return;
-                    }
-
-                    // Display the previous value while waiting for server response
-                    currentStonesElement.textContent = previousValue;
-
-                    const response = await fetch(`${apiUrl}/purchaseUpgrade`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            username: loggedInUsername,
-                            upgradeType: upgradeType
-                        }),
-                    });
-
-                    const data = await response.json();
-
-                    if (data.error) {
-                        alert(data.message || 'Error purchasing upgrade.');
-                        return;
-                    }
-
-                    // Update UI with new values
-                    // Only update if data.Stones is a number, otherwise keep displaying previousValue
-                    currentStonesElement.textContent = isNaN(data.Stones) ? previousValue : formatStones(data.Stones);
-                    stonesPerClickElement.textContent = isNaN(data.stonesPerClick) ? previousValue1 : Math.ceil(data.stonesPerClick) - 1; 
-                    upgradeCostElement.textContent = isNaN(data.upgradeCost) ? previousValue2 : Math.ceil(data.upgradeCost); 
-                    upgradeCostMultElement.textContent = isNaN(data.upgradeCostMult) ? previousValue3 : Math.ceil(data.upgradeCostMult); 
-                    multiplierElement.textContent = isNaN(data.multiplier) ? previousValue4 : (Math.floor(data.multiplier * 100) / 100);
-//sackhamster
-                } catch (error) {
-                    console.error('Error purchasing upgrade:', error);
-                }
-            }
-
-            shopButton.addEventListener("click", () => {
-                shopWindow.style.display = "block";
-                modalOverlay.style.display = "block"; // Show the overlay
-            });
-
-            // Hide the shop window and overlay when the user presses Escape key
-            window.addEventListener("keydown", event => {
-                if (event.key === "Escape") {
-                    shopWindow.style.display = "none";
-                    modalOverlay.style.display = "none"; // Hide the overlay
-                }
-            });
-
-            // Close the shop window and overlay when clicking outside of the shop window
-            modalOverlay.addEventListener("click", () => {
-                shopWindow.style.display = "none";
-                modalOverlay.style.display = "none";
-            });
-
-            /*mineButton.addEventListener("click", () => {
-                if (!autoMinerToggle.checked) {
-                    mineStonesManually();
-                }
-            });*/
-
-            autoMinerToggle.addEventListener("change", () => {
-                if (autoMinerToggle.checked) {
-                    autoMiningInterval = setInterval(mineStonesAuto, 1000);
-                    mineButton.disabled = true; // Disable manual mining
-                } else {
-                    clearInterval(autoMiningInterval);
-                    mineButton.disabled = false; // Enable manual mining
-                }
-            });
-        </script>
-
-<script>
-  </script>
-
-
-        <script>
-            const apiUrl = 'https://arcrimining.us-3.evennode.com';
-            
-            const loggedInUsernameElement = document.getElementById('loggedInUsername');
-
-            const authForm = document.getElementById('auth-form');
-            const authUsername = document.getElementById('auth-username');
-            const authPassword = document.getElementById('auth-password');
-            const authRegister = document.getElementById('auth-register');
-            const authLogin = document.getElementById('auth-login');
-
-            let previousValue = currentStonesElement.textContent;
-
-
-            function getCookie(cname) {
-                let name = cname + "=";
-                let ca = document.cookie.split(';');
-                for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-                }
-                return "";
-            }
-            
-
-            const errorMessageElement = document.getElementById('error-message');
-
-    authRegister.addEventListener('click', async () => {
-    const username = authUsername.value;
-    const password = authPassword.value;
-    
-    errorMessageElement.textContent = "";
-
-    // Client-side validation
-    if (username.length < 5 || username.length > 20) {
-        errorMessageElement.textContent = "Username must be at least 5 characters long!";
-        return;
-    }
-    
-    if (/\s/.test(username)) {  // Check for spaces
-        errorMessageElement.textContent = "Username should not contain spaces!";
-        return;
-    }
-
-    const forbiddenWords = ['nigger', 'n1gg3r', 'n1gg4r', 'waffle', 'n1gg4', 'n1gga', 'nigga', 'boobs', 'porn', 'asshole', 'nigg', 'n3gg3r', 'n1gg3r', 'shit', 'cunt', 'bitch', 'b1tch', 'penis', 'p1nis', 'pen1s', 'p3n1s', 'p3nis', 'nigger']; // Replace placeholders with the actual words
-    const hasForbiddenWord = forbiddenWords.some(word => new RegExp(word, 'i').test(username));
-    if (hasForbiddenWord) {
-        errorMessageElement.textContent = "Please choose a different username.";
-        return;
-    }
-
-    if (password.length < 6) {
-        errorMessageElement.textContent = 'Password must be at least 6 characters long!';
-        return;
-    }
-
-    try {
-        const response = await fetch(`${apiUrl}/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-
-        //const data = await response.json();  // If the server sends a JSON response
-
-        if (response.status === 200) {
-            const token = data.token;
-            // Set the username in the hidden input field
-            loggedInUsernameElement.value = username;
-            errorMessageElement.textContent ='Login successful';     
-        } else if (response.status === 409) {
-            errorMessageElement.textContent = 'Username is already taken!';
-        } else if (response.status === 201) {
-            errorMessageElement.textContent = 'User created successfully!';
-        } else if (response.status === 500) {
-            errorMessageElement.textContent = 'Failed to create user. Please try again.';
-        } else if (response.status === 400) {
-            errorMessageElement.textContent = 'Not enough in the pass';
-        } else {
-            errorMessageElement.textContent = 'Login failed';
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-});
-
-            authLogin.addEventListener('click', async () => {
-                const username = authUsername.value;
-                const password = authPassword.value;
-                const someDiv = document.getElementById('someDiv');
-
-                const response44 = await fetch(`${apiUrl}/login`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ username, password })
-                    });
-                try {
-                    const response = await fetch(`${apiUrl}/login`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ username, password })
-                    });
-                    const data = await response.json();
-                    if (response.status === 200) {
-                        // Use setTimeout to remove the form after 1 second
-                    setTimeout(() => {
-                        authForm.style.display = 'none';
-                        someDiv.classList.remove('hidden');
-                    }, 1500); // 1000 milliseconds = 1 second
-                    
-                        const token = data.token;
-                        console.log(token);
-                        // Set the username in the hidden input field
-                        loggedInUsernameElement.value = username;
-                        errorMessageElement.textContent ='Login successful';
-                    } 
-                    
-
-
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-
-                if (response44.status === 404) {
-                        
-                        // Set the username in the hidden input field
-                        errorMessageElement.textContent ='User not found!';
-                    } 
-            });
-
-        const updateInterval = 500; // hopefully instant
-
-        setInterval(async () => {
-            await updateUI();
-        }, updateInterval);
-
-        
-        setInterval(async () => {
-            fetchAndDisplayLeaderboard();
-        }, updateInterval);
-
-
-        async function updateUI() {
-            try {
-                const loggedInUsername = loggedInUsernameElement.value;
-                if (!loggedInUsername) {
-                    return; // If the user isn't logged in, we don't fetch the data
-                }
-
-                const response = await fetch(`${apiUrl}/getCurrentData`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: loggedInUsername,
-                    }),
-                });
-
-                const data = await response.json();
-
-                currentStonesElement.textContent = isNaN(data.Stones) ? previousValue : formatStones(data.Stones);
-                stonesPerClickElement.textContent = isNaN(data.stonesPerClick) ? "Loading..." : data.stonesPerClick - 1; 
-                upgradeCostElement.textContent = isNaN(data.upgradeCost) ? "Loading..." :  Math.ceil(data.upgradeCost); 
-                upgradeCostMultElement.textContent = isNaN(data.upgradeCostMult) ? "Loading..." : Math.ceil(data.upgradeCostMult); 
-                multiplierElement.textContent = isNaN(data.multiplier) ? "Loading..." : (Math.floor(data.multiplier * 100) / 100)
-
-            } catch (error) {
-                console.error('Error updating UI:', error);
-            }
-        }
-
-        async function mineStonesAuto() {
-            try {
-                const loggedInUsername = loggedInUsernameElement.value;
-                if (!loggedInUsername) {
-                    alert('Please log in first.');
-                    return;
-                }
-
-                const response = await fetch(`${apiUrl}/mineStone`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        username: loggedInUsername,
-                    }),
-                });
-
-                const data = await response.json();
-                if (data.Stones) {
-                    currentStonesElement.textContent = isNaN(data.Stones) ? "Loading..." : formatStones(data.Stones); // Ensure you're rounding here
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-
-        const onlineUsers = {}; // Define the object to track online users
-
-        function fetchAndDisplayLeaderboard() {
-        fetch(`${apiUrl}/leaderboard`)
-            .then(response => response.json())
-            .then(data => {
-                const leaderboardList = document.getElementById('leaderboard-list');
-                leaderboardList.innerHTML = ''; // Clear the list before updating
-
-                const loggedInUsername = loggedInUsernameElement.value;
-
-                data.forEach(user => {
-                    const listItem = document.createElement('li');
-                    let stones = formatStones(user.currentStones); // Format stones as needed
-                    listItem.textContent = `${user.username}: ${stones} stones`;
-
-                    // Check if the username matches the currently logged-in user
-                    if (loggedInUsername && user.username === loggedInUsername) {
-                        listItem.classList.add('active'); // Apply the "active" class
-                    }
-
-                    leaderboardList.appendChild(listItem);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching leaderboard:', error);
-            });
-    }
-
-        fetchAndDisplayLeaderboard();
-
-        function formatStones(stones) {
-            if (stones >= 1e15) {
-                return (stones / 1e15).toFixed(2) + "Q";
-            } else if (stones >= 1e12) {
-                return (stones / 1e12).toFixed(2) + "T";
-            } else if (stones >= 1e9) {
-                return (stones / 1e9).toFixed(2) + "B";
-            } else if (stones >= 1e6) {
-                return (stones / 1e6).toFixed(2) + "M";
-            } else if (stones >= 1e3) {
-                return (stones / 1e3).toFixed(2) + "K";
-            } else {
-                return stones.toFixed(0);
-            }
-        }
-                
-        </script>
-    </body>
+</body>
 </html>
