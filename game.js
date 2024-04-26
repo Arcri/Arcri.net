@@ -1096,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLeaderboardDisplay(selectedSortType);
     }, 1000);
 
-    const socket = io('https://Arcri.net/mining', {
+    const socket = io('https://arcrimining.us-3.evennode.com/', {
         transports: ['websocket'],
         upgrade: false,
     });
@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchAndUpdateCounts() {
-    const token = localStorage.getItem('token');
+    const token = Storage.getItem('token');
     if (token) {
         fetch('/api/updateCounts', {
             method: 'GET',
