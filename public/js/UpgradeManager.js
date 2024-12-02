@@ -1,8 +1,7 @@
-// UpgradeManager.js
 class UpgradeManager {
     constructor() {
-        this.upgrades = {}; // Stores upgrade data
-        this.effects = { // Default effects
+        this.upgrades = {};
+        this.effects = {
             stonesPerClick: 1
         };
     }
@@ -23,15 +22,11 @@ class UpgradeManager {
     }
 
     applyUpgrades(upgrades) {
-        // Validate upgrades before applying them
         if (!upgrades || typeof upgrades !== 'object') {
             console.error('Invalid upgrades data:', upgrades);
             return;
         }
-    
-        // Here you can add more validation if necessary
-    
-        this.upgrades = upgrades; // Assume this includes all upgrade info
+        this.upgrades = upgrades;
         this.calculateEffects();
         this.updateUI();
     }
@@ -39,36 +34,31 @@ class UpgradeManager {
     
 
     calculateEffects() {
-        // Reset default effects
         this.effects.stonesPerClick = 1;
         this.effects.autoMineCount = 1;
-        
-        // Apply all relevant upgrades
         if (this.upgrades.fortuneUpgrade) {
             this.effects.stonesPerClick += this.upgrades.fortuneUpgrade.count;
         }
-
         this.effects.luckyPouchChance = this.upgrades.luckyPouchUpgrade ? this.upgrades.luckyPouchUpgrade.count * 0.01 : 0; // 1% chance per pouch
 
         if (this.upgrades.ordinaryDrillUpgrade) {
             this.effects.autoMineCount += this.upgrades.ordinaryDrillUpgrade.count;
             console.log(`Auto Mine Count Updated to: ${this.effects.autoMineCount}`);
         }
-    
         if (this.upgrades.pearlyDrillUpgrade) {
-            this.effects.pearlyChance = this.upgrades.pearlyDrillUpgrade.count * 0.05; // Example: 5% chance per level
+            this.effects.pearlyChance = this.upgrades.pearlyDrillUpgrade.count * 0.05;
         }
     
         if (this.upgrades.unstableDrillUpgrade) {
-            this.effects.autoMiningRate = Math.max(200, 1000 - this.upgrades.unstableDrillUpgrade.count * 100); // Speed up mining
+            this.effects.autoMiningRate = Math.max(200, 1000 - this.upgrades.unstableDrillUpgrade.count * 100);
         }
     
         if (this.upgrades.draglineExcavatorUpgrade) {
-            this.effects.stonesPerAutoMine = 1 + this.upgrades.draglineExcavatorUpgrade.count * 0.001; // Increase yield by 0.1% per level
+            this.effects.stonesPerAutoMine = 1 + this.upgrades.draglineExcavatorUpgrade.count * 0.001;
         }
     
         if (this.upgrades.bucketWheelExcavatorUpgrade) {
-            this.effects.massiveYieldInterval = this.upgrades.bucketWheelExcavatorUpgrade.count; // Could trigger massive yields less frequently
+            this.effects.massiveYieldInterval = this.upgrades.bucketWheelExcavatorUpgrade.count;
         }
     }
 

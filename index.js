@@ -2,32 +2,26 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const db = require("./db"); // Your db.js file
-const User = require("./User"); // Your User.js file
+const db = require("./db");
+const User = require("./User");
 
 const app = express();
 const port = 8081;
-console.log("moneyballs")
 app.use(bodyParser.json());
 
-app.options('*', cors()); // include before other routes
+app.options('*', cors());
 
 app.use(cors({
     origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add any other methods needed
-    allowedHeaders: ['Content-Type', 'Authorization'] // Add other headers as needed
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-
-// Registration endpoint
 app.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
-
-        // Hash the password before storing it
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create a new user and save to the database
         const user = new User({
             username,
             password: hashedPassword,

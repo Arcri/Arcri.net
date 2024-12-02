@@ -37,8 +37,8 @@
                     clockElement.textContent = timeString;
                     }
 
-                    updateTime(); // Call the function immediately
-                    setInterval(updateTime, 1000); // Call the function every second
+                    updateTime();
+                    setInterval(updateTime, 1000);
                 </script>
             </div>
             
@@ -109,7 +109,7 @@
                     move: {
                         enable: true,
                         speed: 1,
-                        direction: "right", // Start moving particles to the right
+                        direction: "right",
                     },
                     color: {
                         value: "#ffffff",
@@ -131,14 +131,13 @@
                 },
                 retina_detect: true,
             });
-    
-            // Custom animation loop to move particles horizontally
+
             const particlesContainer = document.getElementById("particles-container");
             const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
     
             function moveParticlesHorizontally() {
                 const particles = particleCanvas.pJSDom[0].pJS.particles.array;
-                const speedFactor = 0.2; // Adjust this for the desired speed
+                const speedFactor = 0.2;
     
                 particles.forEach(particle => {
                     particle.x += speedFactor;

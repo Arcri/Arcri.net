@@ -30,8 +30,8 @@
                 clockElement.textContent = timeString;
                 }
 
-                updateTime(); // Call the function immediately
-                setInterval(updateTime, 1000); // Call the function every second
+                updateTime();
+                setInterval(updateTime, 1000);
             </script>
         </div>
         <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
@@ -83,10 +83,8 @@
 
     <div id="game" style="display:none;">
         <div class="container">
-            <!-- Game Panel on the left -->
             <div class="game-panel">
                 <div id="profile" style="display:none;">
-                    <!-- Profile information will be injected here -->
                 </div>
     
                 <div class="bigpanel">
@@ -95,17 +93,12 @@
 
                         <div id="rockTumblerIcon" style="position: fixed; bottom: 50px; left: 50px; cursor: pointer;">
                             <img src="images/rock_tumbler.png" alt="Rock Tumbler">
-                            <!-- Only one beltedTimeDisplay is needed, likely the one outside of the modal -->
                             <div id="beltedTimeDisplay" class="belted-timer">
                                 <div class="flaps">
-                                    <!-- Timer content will be dynamically inserted here -->
                                 </div>
                             </div>
                         </div>
 
-
-                        
-                        <!-- Rock Tumbler Modal -->
                         <div id="rockTumblerModal" class="modal" style="display: none;">
                             <div class="modal-content">
                                 <span class="close">&times;</span>
@@ -115,7 +108,7 @@
                                 <p>Success Rate: <span id="successRate">0%</span></p>
                                 <button onclick="startTumbling()">Start Tumbling</button>
                                 <div id="beltedTimeDisplay" class="belted-timer">
-                                    <div class="flaps"></div> <!-- This will hold the flipping numbers -->
+                                    <div class="flaps"></div>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +149,6 @@
                         <div class="extra-container">
                             <a id="shopButton" class="shopbutton">Shop!</a>
                             <a id="sellButton" class="shopbutton">Sell!</a>
-                           <!-- <a id="cosmeticsButton" class="shopbutton">Cosmetics!</a>-->
                         </div>
 
                         <div id="cosmeticsShop" class="modal">
@@ -166,36 +158,25 @@
                                 <button class="tab-button" onclick="openCosmeticTab('Accessories')">Accessories</button>
                                 <button class="tab-button" onclick="openCosmeticTab('Pickaxes')">Pickaxes</button>
                             </div>
-                            <!-- Tab Contents -->
                             <div id="Hats" class="tab-content">
-                                <!-- Dynamic list of hats will be loaded here -->
                             </div>
                             <div id="Accessories" class="tab-content">
-                                <!-- Dynamic list of accessories will be loaded here -->
                             </div>
                             <div id="Pickaxes" class="tab-content">
-                                <!-- Dynamic list of pickaxes will be loaded here -->
                             </div>
                         </div>
                         
-                        <!-- Cosmetics Selection Modal -->
                         <div id="cosmeticsSelection" class="modal">
                             <div class="close">&times;</div>
                             <div id="selectedCosmetics">
-                                <!-- Show the selected cosmetics here -->
                                 <div id="selectedHat">
-                                    <!-- Selected hat image -->
                                 </div>
                                 <div id="selectedAccessory">
-                                    <!-- Selected accessory image -->
                                 </div>
-                                <!-- ...same for pickaxes -->
                             </div>
-                            <!-- Controls for selecting cosmetics -->
                             <div class="cosmetic-controls">
                                 <div class="cosmetic-arrow left" onclick="previousCosmetic('hat')">&lt;</div>
                                 <div class="cosmetic-arrow right" onclick="nextCosmetic('hat')">&gt;</div>
-                                <!-- ...same for accessories and pickaxes -->
                             </div>
                             <button id="saveCosmetics" class="shopbutton">Save</button>
                         </div>
@@ -211,7 +192,6 @@
                                 <button class="tab-button" onclick="openTab('Automation')">Automation</button>
                                 <button class="tab-button" onclick="openTab('Collectables')">Collectables</button>
                             </div>
-                            <!-- Mining Gear Tab -->
                             <div id="MiningGear" class="tab-content">
                                 <div class="shop-item" data-upgrade-type="fortuneUpgrade">
                                     <img src="images/sturdypickaxe.png" alt="Sturdy Pickaxe">
@@ -234,9 +214,7 @@
                                     </span>
                                     <button class="purchase-button" data-upgrade-type="luckyPouchUpgrade">Buy</button>
                                 </div>
-                                <!-- More items here -->
                             </div>
-                            <!-- Automation Tab -->
                             <div id="Automation" class="tab-content">
                                 
 
@@ -297,11 +275,8 @@
                                 </div>
 
                             </div>
-                            <!-- Collectables Tab -->
                             <div id="Collectables" class="tab-content">
-                                <!-- List of collectables will go here -->
                             </div>
-                            <!-- More tabs can be added similarly -->
                         </div>
 
                         <div id="sellWindow" class="shop-window" style="display: none;">
@@ -340,10 +315,8 @@
                                 </div>
                             </div>
                             <div id="LustrousStones" class="tab-content">
-                                <!-- Selling items for Lustrous Stones will be dynamically inserted here -->
                             </div>
                             <div id="MegaStones" class="tab-content">
-                                <!-- Selling items for Mega Stones will be dynamically inserted here -->
                             </div>
                             <div style="text-align: right; padding: 20px;">
                                 <button id="quickSellAll" class="purchase-button">Quick Sell All</button>
@@ -354,11 +327,9 @@
                 </div>
             </div>
     
-            <!-- Side Panel on the right for Chat and Leaderboard -->
             <div class="side-panel">
                 <div class="chat-box">
                     <div class="chat-messages" id="chatMessages">
-                        <!-- Chat messages will be dynamically inserted here -->
                     </div>
                     <div class="chat-form">
                         <input type="text" id="chatInput" placeholder="Type a message..." />
@@ -370,10 +341,8 @@
                     <select id="leaderboardSort">
                         <option value="stoneCount">Stones</option>
                         <option value="coins">Coins</option>
-                        <!-- Add more sorting options if needed -->
                     </select>
                     <div id="leaderboardList">
-                        <!-- Leaderboard entries will be dynamically inserted here -->
                     </div>
                 </div>
             </div>
@@ -417,7 +386,7 @@
                     move: {
                         enable: true,
                         speed: 1,
-                        direction: "right", // Start moving particles to the right
+                        direction: "right",
                     },
                     color: {
                         value: "#ffffff",
@@ -440,13 +409,12 @@
                 retina_detect: true,
             });
     
-            // Custom animation loop to move particles horizontally
             const particlesContainer = document.getElementById("particles-container");
             const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
     
             function moveParticlesHorizontally() {
                 const particles = particleCanvas.pJSDom[0].pJS.particles.array;
-                const speedFactor = 0.2; // Adjust this for the desired speed
+                const speedFactor = 0.2;
     
                 particles.forEach(particle => {
                     particle.x += speedFactor;

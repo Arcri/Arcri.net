@@ -130,7 +130,6 @@ shopWindow.addEventListener('click', function(event) {
     event.stopPropagation();
 });
 
-// Manual mining functionality
 mineButton.addEventListener('click', function() {
     mine(false);
 });
