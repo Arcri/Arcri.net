@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCRI | Merch Coming Soon</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Merch page specific styles -->
+    <style>
+        .merch-page {
+            background-color: var(--medium-pale-yellow);
+            min-height: 100vh;
+            padding-top: 80px; /* Space for the fixed header */
+        }
+        
+        .merch-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            background-color: var(--not-quite-white);
+            overflow: hidden;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+        
+        .coming-soon-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .merch-title {
+            font-size: 3rem;
+            color: var(--deep-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .merch-subtitle {
+            font-size: 1.5rem;
+            color: var(--dark-oak);
+            margin-bottom: 2rem;
+        }
+        
+        .merch-description {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .notify-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .notify-input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        
+        .notify-btn {
+            background-color: var(--waterlily);
+            color: var(--not-quite-white);
+            border: none;
+            padding: 0 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .notify-btn:hover {
+            background-color: var(--bluer-blueberry);
+        }
+        
+        .disclaimer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Background stars */
+        .merch-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .merch-stars .star {
+            position: absolute;
+            background-image: url('../assets/logos/star.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .merch-stars .star-1 {
+            top: 50px;
+            left: 50px;
+            width: 25px;
+            height: 25px;
+            filter: invert(75%) sepia(56%) saturate(824%) hue-rotate(349deg) brightness(99%) contrast(96%);
+            transform: rotate(-15deg);
+        }
+        
+        .merch-stars .star-2 {
+            top: 100px;
+            right: 80px;
+            width: 20px;
+            height: 20px;
+            filter: invert(75%) sepia(77%) saturate(1115%) hue-rotate(338deg) brightness(91%) contrast(96%);
+            transform: rotate(10deg);
+        }
+        
+        .merch-stars .star-3 {
+            bottom: 120px;
+            left: 80px;
+            width: 18px;
+            height: 18px;
+            filter: invert(55%) sepia(98%) saturate(1552%) hue-rotate(170deg) brightness(91%) contrast(96%);
+            transform: rotate(30deg);
+        }
+        
+        .merch-stars .star-4 {
+            bottom: 70px;
+            right: 50px;
+            width: 22px;
+            height: 22px;
+            filter: invert(55%) sepia(19%) saturate(6108%) hue-rotate(195deg) brightness(97%) contrast(76%);
+            transform: rotate(-10deg);
+        }
+        
+        /* Preview images with coming soon overlay */
+        .merch-previews {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem auto;
+            max-width: 800px;
+        }
+        
+        .preview-item {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6; /* Dimmed to emphasize coming soon */
+        }
+        
+        .coming-soon-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .merch-title {
+                font-size: 2.5rem;
+            }
+            
+            .merch-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .notify-form {
+                flex-direction: column;
+            }
+            
+            .preview-item {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as main page) -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/logos/arcri-header-logo.svg" alt="ARCRI Logo" class="logo-icon">
+                <div class="logo-text">ARCRI</div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="merch.html" class="active">Merch</a></li>
+                    <li><a href="newsletter.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="header-socials">
+                <a href="https://discord.gg/agyYC4a" class="header-social-icon"><i class="fab fa-discord"></i></a>
+                <a href="https://www.instagram.com/notarcri/" class="header-social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/arcri" class="header-social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY" class="header-social-icon"><i class="fab fa-spotify"></i></a>
+                <a href="https://music.apple.com/us/artist/arcri/1655320463" class="header-social-icon"><i class="fab fa-apple"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Merch Page Content -->
+    <div class="merch-page">
+        <div class="merch-container">
+            <div class="merch-stars">
+                <div class="star star-1"></div>
+                <div class="star star-2"></div>
+                <div class="star star-3"></div>
+                <div class="star star-4"></div>
+            </div>
+            
+            <div class="coming-soon-text">
+                <h1 class="merch-title">Merch Coming Soon</h1>
+                <h2 class="merch-subtitle">Express Your Support</h2>
+                <p class="merch-description">We're working on bringing you high-quality merchandise to showcase your support for Arcri. T-shirts, hoodies, vinyls, and more are on the way. Stay tuned for the official launch!</p>
+            </div>
+            
+            <div class="merch-previews">
+                <div class="preview-item">
+                    <img src="assets/images/merch/placeholder.jpg" alt="T-shirt Preview">
+                    <div class="coming-soon-overlay">COMING SOON</div>
+                </div>
+                <div class="preview-item">
+                    <img src="assets/images/merch/placeholder.jpg" alt="Hoodie Preview">
+                    <div class="coming-soon-overlay">COMING SOON</div>
+                </div>
+                <div class="preview-item">
+                    <img src="assets/images/merch/placeholder.jpg" alt="Vinyl Preview">
+                    <div class="coming-soon-overlay">COMING SOON</div>
+                </div>
+            </div>
+            
+            <form class="notify-form">
+                <input type="email" class="notify-input" placeholder="Enter your email for updates" required>
+                <button type="submit" class="notify-btn">Notify Me</button>
+            </form>
+            <p class="disclaimer">We'll only email you when the merch store launches. No spam, we promise!</p>
+        </div>
+    </div>
+
+    <!-- Footer (same as main page) -->
+    <footer>
+        <div class="footer-logo">ARCRI</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="community.html">Community</a>
+            <a href="merch.html">Merch</a>
+            <a href="newsletter.html">Sign Up</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 ARCRI
+        </div>
+    </footer>
+
+    <!-- Simple form handling script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const notifyForm = document.querySelector('.notify-form');
+            
+            if (notifyForm) {
+                notifyForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const emailInput = this.querySelector('input[type="email"]');
+                    const email = emailInput.value;
+                    
+                    // Store email in localStorage (for demonstration)
+                    try {
+                        const emails = JSON.parse(localStorage.getItem('merch_notify_emails') || '[]');
+                        
+                        if (!emails.includes(email)) {
+                            emails.push(email);
+                            localStorage.setItem('merch_notify_emails', JSON.stringify(emails));
+                        }
+                        
+                        // Show success message
+                        emailInput.value = '';
+                        alert('Thanks! We\'ll notify you when the merch store launches.');
+                    } catch (error) {
+                        console.error('Error storing email:', error);
+                        alert('Thanks! We\'ll notify you when the merch store launches.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

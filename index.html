@@ -1,200 +1,186 @@
-<html lang="en"><head> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <link rel="icon" href="images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcri</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/418bb7c403.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="funbox.js"></script>
+    <title>Home - Arcri</title>
+    
+    <!-- css -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-
-    <body>
-
-        
-        
-        <section class="header">
-            
-            
-            
-            <div class="logo"><a href="https://www.arcri.net/"><img src="images/logo.png"></a><h1>ARCRI.NET</h1></div>
-            
-            <div class="text-box">
-                
-                <h1>About Me</h1><a>If you would like to support me,</a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">consider buying me a coffee!</a>
-                <h1>About Me</h1><a>Or, </a> <a href="https://www.buymeacoffee.com/Arcri" target="_blank">you can commission me as well! </a>
-                <h1 id='clock'></h1>
-                
-                <script>
-                    function updateTime() {
-                    const clockElement = document.getElementById('clock');
-                    const currentTime = new Date();
-                    const options = { timeZoneName: 'short' };
-                    const timeString = currentTime.toLocaleTimeString('en-US', options);
-
-                    clockElement.textContent = timeString;
-                    }
-
-                    updateTime(); // Call the function immediately
-                    setInterval(updateTime, 1000); // Call the function every second
-                </script>
+<body>
+    <!-- header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/logos/arcri-header-logo.svg" alt="ARCRI Logo" class="logo-icon">
+                <div class="logo-text">ARCRI</div>
             </div>
-            
-            
-            <div id="coolgradient"><div id="particles-container"></div></div><div id="coolgradient2"></div></div>
-            
-            
-
-            
-        </section>
-        
-        <div class="crest">
-            <div id="crest"><div id="coolgradient2"></div></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="https://arcri.net/featured">Featured</a></li>
+                    <li><a href="https://arcri.net/community">Community</a></li>
+                    <li><a href="https://store.arcri.net" target="_blank">Merch</a></li>
+                    <li><a href="https://arcri.net/newsletter">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="header-socials">
+                <a href="https://discord.gg/agyYC4a" class="header-social-icon"><i class="fab fa-discord"></i></a>
+                <a href="https://www.instagram.com/notarcri/" class="header-social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/arcri" class="header-social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY" class="header-social-icon"><i class="fab fa-spotify"></i></a>
+                <a href="https://music.apple.com/us/artist/arcri/1655320463" class="header-social-icon"><i class="fab fa-apple"></i></a>
+            </div>
         </div>
+    </header>
 
-        <div class="socialicon1">
-            <div id="socialicon1"><a href="https://discord.gg/rdRtWGjfwz"><img src="images/discord.png" class="navlink"></a></div>
+    <!-- banner -->
+    <section class="banner">
+        <div class="banner-text">
+            <h1>ARCRI</h1>
         </div>
-        <div  class="socialicon2">
-            <div id="socialicon2"><a href="https://www.youtube.com/@Arcri"><img src="images/youtube.png" class="navlink"></div>
+        <div class="banner-stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
         </div>
-        <div  class="socialicon3">
-            <div id="socialicon3"><a href="https://www.instagram.com/notarcri/"><img src="images/instagram.png" class="navlink"></div>
-        </div>
-        <div class="socialicon4">
-            <div id="socialicon4"><a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY"><img src="images/spotify.png" class="navlink"></div>
-        </div>
-        <section class="nav">
-            <a href="https://arcri.net/pixelart" class="navbutton">
-                <button class="navbutton" id="btn"><p>PIXEL ART</p><img src="images/aseprite.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/foodrandomizer" class="navbutton">
-                <button class="navbutton" id="btn"><p>FOOD</p><img src="images/food.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/riftgame" class="navbutton">
-                <button class="navbutton" id="btn"><p>RIFT</p><img src="images/rift.png" class="navlink"></button>
-            </a>
-            <a href="https://arcri.net/music" class="navbutton">
-                <button class="navbutton" id="btn"><p>MUSIC</p><img src="images/logo2.png" class="navlink"></button>
-            </a>
-            <a href="https://arcrimining.us-3.evennode.com" class="navbutton">
-                <button class="navbutton" id="btn"><p>MINING</p><img src="images/pickaxe.png" class="navlink"></button>
-            </a>
-        </section>
+        <div class="banner-logo-bg"></div>
+        <img src="assets/images/arcri.png" alt="ARCRI" class="banner-bottom-image">
+        <div class="banner-gradient"></div>
+        <div class="featured-title">"Animosity" - A Single</div>
+        <div class="featured-subtitle">out on all platforms</div>
+        <a href="https://share.amuse.io/track/arcri-animosity" class="featured-stream-download-btn">Stream/Download</a>
+    </section>
 
-
-        <section class="panel">
-            <div class="row">
-                <div class="subpanel">
-                    <h1>I am Arcri, a pixel artist of
-                    
-                    <script>
-                        function calculateYearsSince(year) {
-                        const currentYear = new Date().getFullYear();
-                        const yearsSince = currentYear - year;
-                        return yearsSince;
-                        }
-
-                        const startingYear = 2019;
-                        const yearsSinceStart = calculateYearsSince(startingYear);
-
-                        document.write((yearsSinceStart) + " years");
-                    </script>
-                    
-                    and a musician of
-                    
-                    <script>
-                        function calculateYearsSince(yearA) {
-                        const currentYearA = new Date().getFullYear();
-                        const yearsSinceA = currentYearA - yearA;
-                        return yearsSinceA;
-                        }
-    
-                        const startingYearA = 2021;
-                        const yearsSinceStartA = calculateYearsSince(startingYearA);
-    
-                        document.write((yearsSinceStartA) + " years");
-                    </script>.
-                    </h1>
-                    <p>I started making pixel art as a hobby in late 2018, when I created my first project, a "Terraria" mod known as The Aerovelence Mod. I have made most of the sprites for this mod, and have been touching up on old sprites ever since. I have also created art for several projects, several of which are for my own games. I am currently in the process of handling creative design for "Rift" and "Hooligan's Hurry", both 2D games. Some other projects I have ran and managed include "RunicSky", a Minecraft network.</p>
-                    <a href="https://www.youtube.com/channel/UCMjDP1VBgr44aOj-Itt_wNw" class="bigbutton">THE AEROVELENCE MOD</a>
-                </div>
-                <div class="subpanel">
-                    <img src="images/art.png">
+    <!-- featured album section -->
+    <section id="featured" class="section featured-section">
+        <div class="featured-album">
+            <div class="featured-album-art">
+                <img src="assets/images/album/animosity.jfif" alt="Animosity Album Cover" class="album-art-image">
+                <div class="album-overlay">
+                    <a href="https://share.amuse.io/track/arcri-animosity"><button class="play-btn"><i class="fas fa-play"></i></button></a>
                 </div>
             </div>
-        </section>
-        <div id="container">
-            <button id="moving-button">Glitcha</button>
-          </div>
-        <section class="footer">
-            <a href="index.html"><img src="images/logo.png" height="100px" width="70px"></a>
-        </section>
+            <div class="featured-album-info">
+                <span class="new-release-badge">NEW RELEASE</span>
+                <h2>Animosity</h2>
+                <p class="album-description">Bringing you straight back into the 2000's!</p>
+                <div class="album-actions">
+                    <a href="https://share.amuse.io/track/arcri-animosity" class="stream-btn">STREAM OR DOWNLOAD NOW! ⭐ ⭐ ⭐ ⭐ ⭐</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <script>
-            particlesJS("particles-container", {
-                particles: {
-                    number: {
-                        value: 80,
-                        density: {
-                            enable: true,
-                            value_area: 800
-                        }
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: 3,
-                    },
-                    move: {
-                        enable: true,
-                        speed: 1,
-                        direction: "right", // Start moving particles to the right
-                    },
-                    color: {
-                        value: "#ffffff",
-                    },
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: {
-                        onhover: {
-                            enable: true,
-                            mode: "repulse"
-                        },
-                    },
-                    modes: {
-                        repulse: {
-                            distance: 100,
-                        },
-                    },
-                },
-                retina_detect: true,
-            });
-    
-            // Custom animation loop to move particles horizontally
-            const particlesContainer = document.getElementById("particles-container");
-            const particleCanvas = particlesContainer.querySelector(".particles-js-canvas-el");
-    
-            function moveParticlesHorizontally() {
-                const particles = particleCanvas.pJSDom[0].pJS.particles.array;
-                const speedFactor = 0.2; // Adjust this for the desired speed
-    
-                particles.forEach(particle => {
-                    particle.x += speedFactor;
-                    if (particle.x > window.innerWidth) {
-                        particle.x = -particle.radius;
-                    }
-                });
-    
-                requestAnimationFrame(moveParticlesHorizontally);
-            }
-    
-            moveParticlesHorizontally();
-        </script>
-    </body>
+
+    <!-- music section -->
+    <section id="music" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Music</h2>
+            <div class="music-stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+            <button id="viewAllBtn" class="view-all-btn">View All</button>
+        </div>
+        <div class="music-grid">
+            <!-- filled by js -->
+            <div class="loading-indicator">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading music...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for View All -->
+    <div id="musicModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>All Music</h2>
+            <div class="modal-music-grid">
+                <!-- filled by js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- community section -->
+    <section id="community" class="section community-section">
+        <div class="community-stars">
+            <div class="left-stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+            <div class="right-stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+        </div>
+        <h2 class="section-title">Join The Community</h2>
+        <div class="community-container">
+            <div class="discord-card">
+                <div class="card-star-topleft"></div>
+                <div class="card-star-bottomright"></div>
+                <div class="discord-header">
+                    <i class="fab fa-discord"></i>
+                    <h3>The Arcord</h3>
+                </div>
+                <p>Join our community and stay updated on all of Arcri's releases, including special behind-the-scenes content, and teasers!</p>
+                <a href="https://discord.gg/agyYC4a" class="discord-btn">Join Discord</a>
+            </div>
+            
+            <div class="newsletter-card">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to get the latest news and exclusive content straight to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-btn">Sign Up</button>
+                </form>
+                <p class="form-disclaimer">We respect your privacy and will never share your information.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- social section -->
+    <section class="social-media">
+        <h2>Connect</h2>
+        <div class="social-icons">
+            <a href="https://discord.gg/agyYC4a" class="social-icon"><i class="fab fa-discord"></i></a>
+            <a href="https://www.instagram.com/notarcri/" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/arcri" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY" class="social-icon"><i class="fab fa-spotify"></i></a>
+            <a href="https://music.apple.com/us/artist/arcri/1655320463" class="social-icon"><i class="fab fa-apple"></i></a>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-logo">ARCRI</div>
+        <div class="footer-links">
+            <a href="https://arcri.net/featured">Featured</a>
+            <a href="https://arcri.net/community">Community</a>
+            <a href="https://store.arcri.net">Merch</a>
+            <a href="https://arcri.net/newsletter">Sign Up</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 ARCRI
+        </div>
+    </footer>
+
+    <!-- js -->
+    <script src="js/script.js"></script>
+    <script src="js/music-display.js"></script>
+</body>
 </html>

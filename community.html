@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCRI | The Arcord Community</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Community specific styles -->
+    <style>
+        .community-page {
+            background-color: var(--medium-pale-yellow);
+            min-height: 100vh;
+            padding-top: 80px; /* Space for the fixed header */
+        }
+        
+        .arcord-container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            background-color: var(--not-quite-white);
+            /* Removed rounded corners as requested */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .arcord-header {
+            background-color: #5865F2; /* Discord color */
+            color: var(--not-quite-white);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .arcord-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        
+        .arcord-content {
+            padding: 2rem;
+        }
+        
+        .arcord-description {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: var(--deep-blue);
+        }
+        
+        .join-discord-btn {
+            display: inline-block;
+            /* Change from 12.5rem to a smaller value, or use width instead */
+            padding: 1rem 2.5rem;
+            width: 550px; /* Set a fixed width instead of extreme padding */
+            background-color: #5865F2;
+            color: var(--not-quite-white);
+            text-decoration: none;
+            font-weight: 600;
+            /* Removed rounded corners */
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+            text-align: center; /* Ensure text is centered */
+        }
+        
+        .join-discord-btn:hover {
+            background-color: #4752c4;
+        }
+        
+        .star-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .star-decorations .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('../assets/logos/star.svg');
+            background-size: contain;
+            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+            opacity: 0.3;
+        }
+        
+        .star-decorations .star:nth-child(1) {
+            top: 20px;
+            left: 30px;
+        }
+        
+        .star-decorations .star:nth-child(2) {
+            top: 50px;
+            right: 40px;
+            transform: rotate(15deg);
+        }
+        
+        .star-decorations .star:nth-child(3) {
+            bottom: 20px;
+            left: 20%;
+            transform: rotate(-10deg);
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0; /* Removed top margin to align with Discord widget */
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+        }
+        
+        .feature-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #5865F2;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5rem;
+            font-size: 1.8rem;
+            /* Removed rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-content {
+            flex-grow: 1;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue);
+        }
+        
+        .feature-description {
+            color: #555;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+        
+        /* Discord widget container */
+        .discord-widget-container {
+            padding-left: 10rem; /* Added padding to the left to push widget further right */
+        }
+        
+        .discord-widget-container iframe {
+            width: 100%;
+            max-width: 350px;
+            height: 500px;
+            border: none;
+        }
+        
+        .two-column-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0; /* Removed gap to have better control over spacing */
+            margin-top: 2rem;
+        }
+        
+        .feature-column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .feature-column:first-child {
+            padding-right: 2rem;
+        }
+        
+        /* Music icon */
+        .music-icon {
+            background-color: var(--waterlily);
+        }
+        
+        /* Users icon */
+        .users-icon {
+            background-color: var(--bluer-blueberry);
+        }
+        
+        /* Bell icon */
+        .bell-icon {
+            background-color: var(--dandelion);
+        }
+        
+        /* Button container */
+        .button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .two-column-features {
+                flex-direction: column;
+            }
+            
+            .feature-item {
+                margin-bottom: 2rem;
+            }
+            
+            .discord-widget-container {
+                padding-left: 0;
+                margin-top: 2rem;
+            }
+            
+            .feature-column:first-child {
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as main page) -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/logos/arcri-header-logo.svg" alt="ARCRI Logo" class="logo-icon">
+                <div class="logo-text">ARCRI</div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="community.html" class="active">Community</a></li>
+                    <li><a href="https://store.arcri.net" target="_blank">Merch</a></li>
+                    <li><a href="newsletter.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="header-socials">
+                <a href="https://discord.gg/agyYC4a" class="header-social-icon"><i class="fab fa-discord"></i></a>
+                <a href="https://www.instagram.com/notarcri/" class="header-social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/arcri" class="header-social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://open.spotify.com/artist/3TY4mKsQBSUWDibMGCjCkY" class="header-social-icon"><i class="fab fa-spotify"></i></a>
+                <a href="https://music.apple.com/us/artist/arcri/1655320463" class="header-social-icon"><i class="fab fa-apple"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Community Page Content -->
+    <div class="community-page">
+        <div class="arcord-container">
+            <div class="arcord-header">
+                <div class="star-decorations">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <div class="arcord-title">
+                    <i class="fab fa-discord"></i>
+                    The Arcord
+                </div>
+                <p>Join our vibrant community of Arcri fans!</p>
+            </div>
+            
+            <div class="arcord-content">
+                <div class="arcord-description">
+                    <p>The Arcord is the official Discord server for all things Arcri. Connect with other fans, get exclusive updates, and be the first to hear about new releases and announcements!</p>
+                </div>
+                
+                <div class="two-column-features">
+                    <div class="feature-column">
+                        <ul class="features-list">
+                            <li class="feature-item">
+                                <div class="feature-icon music-icon">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Exclusive Content</h3>
+                                    <p class="feature-description">Get access to behind-the-scenes content, early announcements, and special perks only available to community members.</p>
+                                </div>
+                            </li>
+                            
+                            <li class="feature-item">
+                                <div class="feature-icon users-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Connect With Fans</h3>
+                                    <p class="feature-description">Meet and chat with other Arcri fans from around the world who share your passion for the music.</p>
+                                </div>
+                            </li>
+                            
+                            <li class="feature-item">
+                                <div class="feature-icon bell-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Instant Updates</h3>
+                                    <p class="feature-description">Never miss a release, announcement, or event with real-time notifications.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="button-container">
+                            <a href="https://discord.gg/agyYC4a" class="join-discord-btn">Join The Arcord</a>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-column">
+                        <div class="discord-widget-container">
+                            <iframe src="https://discord.com/widget?id=685789164486000682&theme=dark" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (same as main page) -->
+    <footer>
+        <div class="footer-logo">ARCRI</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="community.html">Community</a>
+            <a href="https://store.arcri.net">Merch</a>
+            <a href="newsletter.html">Sign Up</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 ARCRI. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>

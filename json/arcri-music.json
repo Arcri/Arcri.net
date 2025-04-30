@@ -1,0 +1,54 @@
+[
+    {
+      "name": "Animosity",
+      "album_type": "single",
+      "release_date": "2024",
+      "images": [
+        {
+          "url": "assets/images/album/animosity.jfif" 
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://share.amuse.io/track/arcri-animosity"
+      }
+    },
+    {
+      "name": "Glass House",
+      "album_type": "Album",
+      "release_date": "2023",
+      "images": [
+        {
+          "url": "assets/images/album/glass_house.jfif"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://share.amuse.io/album/arcri-of-snow-and-space"
+      }
+    },
+    {
+      "name": "Of Snow And Space",
+      "album_type": "Album",
+      "release_date": "2023",
+      "images": [
+        {
+          "url": "assets/images/album/of_snow_and_space.jfif"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://share.amuse.io/album/arcri-glass-house"
+      }
+    },
+    {
+      "name": "Hooligan's Hurry",
+      "album_type": "Album",
+      "release_date": "2022",
+      "images": [
+        {
+          "url": "assets/images/album/hooligans_hurry.jfif"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://share.amuse.io/album/arcri-hooligans-hurry"
+      }
+    }
+  ]
