@@ -122,8 +122,8 @@ header {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3; /* Above gradient but below stars */
-    max-height: 85vh; /* Control the height as needed */
+    z-index: 3;
+    max-height: 85vh;
     width: auto;
     display: block;
 }
@@ -142,21 +142,21 @@ header {
     letter-spacing: 15px;
     color: var(--not-quite-white);
     width: 100%;
-    opacity: 0.9; /* More visible text */
+    opacity: 0.9;
     text-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
 .banner-logo-bg {
     position: absolute;
-    width: 140%;  /* Make the logo larger than container */
+    width: 140%;
     height: 140%;
-    opacity: 0.15; /* Slightly increased opacity */
+    opacity: 0.15;
     background-image: url('../assets/logos/arcri-banner-logo.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    transform: rotate(23deg); /* Add the rotation */
-    bottom: -60%; /* Position to be cut off at bottom */
+    transform: rotate(23deg);
+    bottom: -60%;
     left: -20%;
     z-index: 1;
 }
@@ -168,7 +168,7 @@ header {
     width: 100%;
     height: 20%;
     background: linear-gradient(to bottom, rgba(5,27,127,0), var(--deep-blue));
-    z-index: 2; /* Ensure gradient is above the logo */
+    z-index: 2;
 }
 
 .featured-title {
@@ -228,7 +228,7 @@ header {
 
 .banner-stars {
     position: absolute;
-    top: 45%; /* Moved from bottom to top */
+    top: 45%;
     left: 0;
     width: 100%;
     display: flex;
@@ -246,22 +246,19 @@ header {
     filter: invert(88%) sepia(29%) saturate(456%) hue-rotate(99deg) brightness(107%) contrast(97%);
 }
 
-/* Stars Styling */
 .star {
     background-image: url('../assets/logos/star.svg');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
-/* Random Stars Throughout the Site */
 .random-star {
     position: absolute;
     z-index: 1;
-    pointer-events: none; /* Makes sure stars don't interfere with clicking */
-    filter: invert(75%) sepia(56%) saturate(824%) hue-rotate(349deg) brightness(99%) contrast(96%); /* For dandelion (#e9ae24) */
+    pointer-events: none; 
+    filter: invert(75%) sepia(56%) saturate(824%) hue-rotate(349deg) brightness(99%) contrast(96%);
 }
 
-/* Individual star positions and sizes */
 .star-1 {
     top: 15%;
     right: 10%;
@@ -313,7 +310,7 @@ header {
     transform: rotate(-20deg);
 }
 
-/* Content Sections */
+/* content sections */
 .section {
     position: relative;
     padding: 4rem 2rem;
@@ -326,7 +323,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    position: relative; /* Added for music stars positioning */
+    position: relative;
 }
 
 .section-title {
@@ -346,13 +343,13 @@ header {
     background-color: var(--waterlily);
 }
 
-/* Featured Album Section */
+/* featured album section */
 .featured-section {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-/* Featured section star - Moved to right corner */
+/* featured section star */
 .section.featured-section .star-1 {
     top: 15%;
     right: 5%;
@@ -361,7 +358,7 @@ header {
 
 #music .music-stars {
     position: absolute;
-    left: 50%; /* Center with the text */
+    left: 50%;
     transform: translateX(-50%);
     top: 50;
     display: flex;
@@ -372,7 +369,7 @@ header {
 #music .music-stars .star {
     width: 14px;
     height: 14px;
-    transform: rotate(0) !important; /* No rotation */
+    transform: rotate(0) !important;
     filter: invert(75%) sepia(56%) saturate(824%) hue-rotate(349deg) brightness(99%) contrast(96%);
 }
 
@@ -509,7 +506,7 @@ header {
     color: var(--not-quite-white);
 }
 
-/* View All Button */
+/* view all button */
 .view-all-btn {
     background-color: transparent;
     color: var(--waterlily);
@@ -525,14 +522,14 @@ header {
     color: var(--not-quite-white);
 }
 
-/* Music Section */
+/* music section */
 .music-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
 }
 
-/* Music Card Styles - Combined both sets */
+/* music card styles */
 .music-card {
     background-color: var(--not-quite-white);
     overflow: hidden;
@@ -596,7 +593,7 @@ header {
     background-color: var(--bluer-blueberry);
 }
 
-/* Loading and Error States */
+/* loading and error states */
 .loading-indicator {
     grid-column: 1 / -1;
     text-align: center;
@@ -624,7 +621,7 @@ header {
     margin-bottom: 1rem;
 }
 
-/* Modal Styles */
+/* modal styles */
 .modal {
     display: none;
     position: fixed;
@@ -668,7 +665,7 @@ header {
     padding-right: 10px;
 }
 
-/* Scrollbar Styles */
+/* scrollbar styles */
 .modal-music-grid::-webkit-scrollbar {
     width: 8px;
 }
@@ -687,7 +684,7 @@ header {
     background: var(--bluer-blueberry);
 }
 
-/* Community Section */
+/* community section */
 .community-section {
     padding: 3rem 2rem 5rem;
     background-color: var(--not-quite-white);
@@ -718,7 +715,7 @@ header {
     pointer-events: none;
 }
 
-/* Left stars container */
+/* left stars container */
 .community-stars .left-stars {
     position: absolute;
     left: 8%;
@@ -727,7 +724,7 @@ header {
     gap: 12px;
 }
 
-/* Right stars container */
+/* right stars container */
 .community-stars .right-stars {
     position: absolute;
     right: 8%;
@@ -736,11 +733,11 @@ header {
     gap: 12px;
 }
 
-/* Style for all community stars */
+/* style for all community stars */
 .community-stars .star {
     width: 16px;
     height: 16px;
-    transform: rotate(0); /* No rotation */
+    transform: rotate(0);
     filter: invert(75%) sepia(56%) saturate(824%) hue-rotate(349deg) brightness(99%) contrast(96%);
 }
 
@@ -763,7 +760,7 @@ header {
 }
 
 .discord-card {
-    background-color: #5865F2; /* Discord color */
+    background-color: #5865F2;
     color: var(--not-quite-white);
     position: relative;
 }
@@ -869,7 +866,7 @@ header {
     color: #777;
 }
 
-/* Social Media Section */
+/* social media Section */
 .social-media {
     text-align: center;
     background-color: var(--deep-blue);
@@ -907,7 +904,7 @@ header {
     color: var(--deep-blue);
 }
 
-/* Footer */
+/* footer */
 footer {
     background-color: var(--black);
     color: var(--not-quite-white);
@@ -938,7 +935,7 @@ footer {
     color: #777;
 }
 
-/* Streaming Section */
+/* streaming section */
 .streaming-section {
     background-color: var(--deep-blue);
     min-height: 100vh;
@@ -1048,7 +1045,7 @@ footer {
     transform: rotate(15deg);
 }
 
-/* Animation for twinkling effect */
+/* animation for twinkling */
 @keyframes twinkle {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
@@ -1067,7 +1064,7 @@ footer {
     animation: twinkle 2s infinite ease-in-out;
 }
 
-/* Custom Discord Widget Styling */
+/* discord widget styling */
 .discord-widget-container {
     text-align: center;
 }
@@ -1077,7 +1074,7 @@ footer {
     color: var(--deep-blue);
 }
 
-/* Discord Stats Component Styles */
+/* discord stats */
 .discord-stats {
     margin: 2rem auto;
     background-color: var(--not-quite-white);
@@ -1185,7 +1182,7 @@ footer {
     background-color: #4752c4;
 }
 
-/* Community Page Specific Layout */
+/* community page specific layout */
 .two-column-features {
     display: flex;
     flex-wrap: wrap;
@@ -1198,7 +1195,7 @@ footer {
     min-width: 300px;
 }
 
-/* Responsive Design */
+/* responsive design */
 @media (max-width: 992px) {
     .featured-album {
         flex-direction: column;
