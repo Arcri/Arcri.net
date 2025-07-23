@@ -390,7 +390,7 @@ header {
 .featured-album-art {
     flex: 1;
     position: relative;
-    min-height: 400px;
+    min-height: 500px;
 }
 
 .album-art-image {
