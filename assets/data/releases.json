@@ -1,0 +1,30 @@
+[
+  {
+    "id": "animosity",
+    "title": "Animosity",
+    "type": "Single",
+    "cover": "assets/images/album/animosity.jpg",
+    "tagline": "Classic 2000s rock",
+    "primaryUrl": "release.html?id=animosity",
+    "platforms": [
+      { "name": "Spotify", "icon": "fa-spotify", "url": "https://open.spotify.com/track/17jTRaGZY3WQgGAA2Oumtz?si=38e0c3165b084deb" },
+      { "name": "Apple Music", "icon": "fa-apple", "url": "https://music.apple.com/us/album/animosity-single/1771426646" },
+      { "name": "YouTube Music", "icon": "fa-youtube", "url": "https://music.youtube.com/watch?v=Tzzgp41Or5Y" },
+      { "name": "Amazon Music", "icon": "fa-amazon", "url": "https://www.amazon.com/Animosity-Arcri/dp/B0DJ9GPCDB" },
+      { "name": "Pandora", "icon": "fa-music", "url": "https://www.pandora.com/artist/arcri/AR27cfg3X7rccm4" },
+      { "name": "Deezer", "icon": "fa-deezer", "url": "https://www.deezer.com/us/album/650144651" },
+      { "name": "YouTube", "icon": "fa-youtube", "url": "https://www.youtube.com/watch?v=Tzzgp41Or5Y" }
+    ]
+  },
+  {
+    "id": "sealed-letter",
+    "title": "Sealed Letter",
+    "type": "Album",
+    "cover": "assets/images/album/sealed_letter.jfif",
+    "tagline": "Bright and powerful Indie Rock!",
+    "primaryUrl": "release.html?id=sealed-letter",
+    "platforms": [
+      { "name": "Stream/Download", "icon": "fa-play", "url": "https://share.amuse.io/track/arcri-animosity" }
+    ]
+  }
+]
