@@ -1,4 +1,4 @@
-const RELEASES_URL = "/data/releases.json";
+const RELEASES_URL = "assets/data/releases.json";
 
 function getReleaseId() {
   const url = new URL(window.location.href);
