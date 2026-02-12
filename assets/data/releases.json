@@ -65,6 +65,7 @@
         "type": "Single",
         "cover": "assets/images/album/animosity.jfif",
         "tagline": "Classic 2000s rock",
+        "primaryUrl": "release.html?id=animosity",
         "platforms": [
             { "name": "Spotify", "icon": "fa-spotify", "url": "https://open.spotify.com/album/5pnVjYDhAy5dCeW1XVQHLw?si=APhACGvASb2GQVjP4pel1A" },
             { "name": "Apple Music", "icon": "fa-apple", "url": "https://music.apple.com/us/album/sealed-letter/1835677200" },
