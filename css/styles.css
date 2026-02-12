@@ -416,6 +416,34 @@ header {
     transition: opacity 0.3s ease;
 }
 
+.modal-filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1rem 0 1.5rem;
+}
+
+.modal-filter-btn {
+    background-color: transparent;
+    border: 2px solid var(--waterlily);
+    color: var(--deep-blue);
+    padding: 0.45rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-filter-btn:hover {
+    background-color: var(--waterlily);
+    color: var(--not-quite-white);
+}
+
+.modal-filter-btn.active {
+    background-color: var(--waterlily);
+    color: var(--not-quite-white);
+}
+
+
 .featured-album-art:hover .album-overlay {
     opacity: 1;
 }

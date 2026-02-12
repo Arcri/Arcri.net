@@ -22,7 +22,7 @@
     {
         "id": "Candlelight Carnival",
         "title": "Candlelight Carnival",
-        "type": "Album",
+        "type": "Single",
         "cover": "assets/images/album/candlelight_carnival.jfif",
         "tagline": "Arcri's in a rock stadium!",
         "primaryUrl": "release.html?id=candlelight-carnival",
