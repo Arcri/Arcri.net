@@ -1,54 +1,72 @@
-const RELEASES_URL = "/assets/data/releases.json";
+const RELEASES_URL = "/data/releases.json";
 
-function getId() {
-    const u = new URL(window.location.href);
-    return u.searchParams.get("id");
+function getReleaseId() {
+  const url = new URL(window.location.href);
+  return url.searchParams.get("id");
 }
 
-function li(p) {
-    const name = String(p.name || "");
-    const icon = String(p.icon || "fa-music");
-    const url = String(p.url || "#");
-    const faPrefix = icon.startsWith("fa-") ? "fa-solid" : "fa-solid";
-    const iconClass = icon.includes("fa-") ? icon : "fa-music";
-    const isBrand = ["fa-spotify","fa-apple","fa-youtube","fa-amazon","fa-deezer","fa-discord","fa-instagram"].includes(iconClass);
-    const prefix = isBrand ? "fa-brands" : "fa-solid";
-
-    return `
-        <li class="streaming-item">
-            <i class="${prefix} ${iconClass} streaming-icon"></i>
-            <span class="streaming-name">${name}</span>
-            <a href="${url}" class="streaming-link" target="_blank" rel="noopener">Visit</a>
-        </li>
-    `;
+function iconClass(icon) {
+  const i = String(icon || "fa-music");
+  const brands = new Set([
+    "fa-spotify",
+    "fa-apple",
+    "fa-youtube",
+    "fa-deezer",
+    "fa-soundcloud",
+    "fa-discord",
+    "fa-instagram"
+  ]);
+  const prefix = brands.has(i) ? "fa-brands" : "fa-solid";
+  return `${prefix} ${i}`;
 }
 
-async function load() {
-    const res = await fetch(RELEASES_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to load releases.json");
-    return await res.json();
+function platformRow(p) {
+  const name = String(p.name || "");
+  const url = String(p.url || "#");
+  const icon = iconClass(p.icon);
+
+  return `
+    <li class="streaming-item">
+      <i class="${icon} streaming-icon"></i>
+      <span class="streaming-name">${name}</span>
+      <a href="${url}" class="streaming-link" target="_blank" rel="noopener">Visit</a>
+    </li>
+  `;
+}
+
+async function loadReleases() {
+  const res = await fetch(RELEASES_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to load releases");
+  return await res.json();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const id = getId();
-    const titleEl = document.getElementById("releaseTitle");
-    const listEl = document.getElementById("platformList");
+  const id = getReleaseId();
 
-    try {
-        const releases = await load();
-        const r = (Array.isArray(releases) ? releases : []).find(x => x.id === id);
+  const titleEl = document.getElementById("releaseTitle");
+  const subEl = document.getElementById("releaseSubtitle");
+  const listEl = document.getElementById("platformList");
 
-        if (!r) {
-            titleEl.textContent = "Release not found";
-            listEl.innerHTML = "";
-            return;
-        }
+  try {
+    const releases = await loadReleases();
+    const r = (Array.isArray(releases) ? releases : []).find(x => x.id === id);
 
-        titleEl.textContent = `${r.title} · ${r.type || "Release"}`;
-        const platforms = Array.isArray(r.platforms) ? r.platforms : [];
-        listEl.innerHTML = platforms.map(li).join("");
-    } catch (e) {
-        titleEl.textContent = "Music temporarily unavailable";
-        listEl.innerHTML = "";
+    if (!r) {
+      titleEl.textContent = "Release not found";
+      subEl.textContent = "";
+      listEl.innerHTML = "";
+      return;
     }
+
+    titleEl.textContent = r.title || "Release";
+    subEl.textContent = r.type ? `${r.type} · Stream / Download` : "Stream / Download";
+
+    const platforms = Array.isArray(r.platforms) ? r.platforms : [];
+    listEl.innerHTML = platforms.map(platformRow).join("");
+
+  } catch (e) {
+    titleEl.textContent = "Sorry — we couldn't load this release";
+    subEl.textContent = "Please try again later.";
+    listEl.innerHTML = "";
+  }
 });
